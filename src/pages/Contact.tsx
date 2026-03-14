@@ -194,7 +194,4 @@ const Contact = () => {
   );
 };
 
-// Need ArrowRight import
-import { ArrowRight } from "lucide-react";
-
 export default Contact;
