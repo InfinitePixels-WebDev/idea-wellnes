@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 
