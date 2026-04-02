@@ -7,8 +7,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
-import Programs from "./pages/Programs.tsx";
-import Memberships from "./pages/Memberships.tsx";
 import Trainers from "./pages/Trainers.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Contact from "./pages/Contact.tsx";
@@ -26,8 +24,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
-          <Route path="/programs" element={<Programs />} />
-          <Route path="/memberships" element={<Memberships />} />
           <Route path="/trainers" element={<Trainers />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />

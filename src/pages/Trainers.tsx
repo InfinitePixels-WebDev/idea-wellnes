@@ -1,11 +1,14 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Instagram, Twitter, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParallaxSection from "@/components/ParallaxSection";
 import trainer1 from "@/assets/trainer-1.jpg";
 import trainer2 from "@/assets/trainer-2.jpg";
 import trainer3 from "@/assets/trainer-3.jpg";
 import trainer4 from "@/assets/trainer-4.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
 
 const trainers = [
   {
@@ -39,22 +42,30 @@ const trainers = [
 ];
 
 const Trainers = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto">
+    <div className="overflow-hidden">
+      {/* Hero — split layout with parallax */}
+      <section ref={heroRef} className="relative min-h-[70vh] flex items-end overflow-hidden">
+        <motion.div style={{ y: heroY }} className="absolute inset-0">
+          <img src={gallery2} alt="Training session" className="w-full h-full object-cover" />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-16 md:pb-24 w-full">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body"
           >
             Our Trainers
           </motion.p>
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             className="display-xl mb-6 text-foreground"
           >
             World-Class<br /><span className="text-gradient">Coaching</span>
@@ -62,47 +73,60 @@ const Trainers = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-lg text-muted-foreground max-w-2xl font-body"
+            transition={{ delay: 0.5 }}
+            className="text-lg text-muted-foreground max-w-xl font-body"
           >
-            Our certified experts bring decades of experience across every discipline. Your goals are their mission.
+            Our certified experts bring decades of experience across every discipline.
           </motion.p>
         </div>
       </section>
 
-      {/* Trainer Grid */}
-      <section className="pb-24 md:pb-32 px-6 md:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Trainer profiles — alternating full-width cards */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto flex flex-col gap-12 md:gap-20">
           {trainers.map((t, i) => (
-            <ScrollReveal key={t.name} delay={i * 0.1}>
-              <div className="glow-card overflow-hidden group">
-                <div className="relative z-10 flex flex-col sm:flex-row">
-                  <div className="sm:w-2/5 relative overflow-hidden">
+            <ScrollReveal key={t.name} delay={0.1}>
+              <div className={`flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-6 md:gap-12 items-center`}>
+                {/* Image side */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.6 }}
+                  className="w-full md:w-2/5 relative group"
+                >
+                  <div className="relative overflow-hidden rounded-2xl aspect-[3/4]">
                     <img
                       src={t.img}
                       alt={t.name}
-                      className="w-full h-64 sm:h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
                   </div>
-                  <div className="sm:w-3/5 p-6 md:p-8 flex flex-col justify-center">
-                    <h3 className="font-display text-xl uppercase mb-1 text-card-foreground">{t.name}</h3>
-                    <p className="text-primary text-sm font-semibold uppercase tracking-wider mb-4 font-body">{t.role}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4 font-body">{t.bio}</p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {t.tags.map((tag) => (
-                        <span key={tag} className="text-xs px-3 py-1 rounded-full border border-border text-muted-foreground font-body">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex gap-3">
-                      <a href="#" className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300">
-                        <Instagram className="h-4 w-4" />
-                      </a>
-                      <a href="#" className="p-2 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300">
-                        <Twitter className="h-4 w-4" />
-                      </a>
-                    </div>
+                  {/* Floating number */}
+                  <span className="absolute -top-6 -left-4 md:-left-8 font-display text-7xl md:text-9xl text-primary/10 select-none">
+                    0{i + 1}
+                  </span>
+                </motion.div>
+
+                {/* Content side */}
+                <div className="w-full md:w-3/5">
+                  <p className="text-primary text-sm font-semibold uppercase tracking-[0.2em] mb-2 font-body">{t.role}</p>
+                  <h2 className="font-display text-3xl md:text-4xl uppercase mb-4 text-foreground">{t.name}</h2>
+                  <div className="w-12 h-0.5 bg-primary mb-6" />
+                  <p className="text-muted-foreground leading-relaxed mb-6 font-body text-lg">{t.bio}</p>
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {t.tags.map((tag) => (
+                      <span key={tag} className="text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:border-primary hover:text-primary transition-all duration-300 font-body cursor-default">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-3">
+                    <a href="#" className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary hover:shadow-[0_0_15px_hsl(var(--glow-primary))] hover:-translate-y-1 transition-all duration-300">
+                      <Instagram className="h-4 w-4" />
+                    </a>
+                    <a href="#" className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary hover:shadow-[0_0_15px_hsl(var(--glow-primary))] hover:-translate-y-1 transition-all duration-300">
+                      <Twitter className="h-4 w-4" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -111,20 +135,22 @@ const Trainers = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-padding bg-card">
-        <div className="max-w-4xl mx-auto text-center">
-          <ScrollReveal>
-            <h2 className="display-lg mb-6 text-foreground">Train With<br /><span className="text-gradient">The Best</span></h2>
-            <p className="text-lg text-muted-foreground mb-10 font-body">
-              Book a personal training session and experience the difference expert coaching makes.
-            </p>
-            <Link to="/contact" className="btn-primary text-sm">
-              Book A Session <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </ScrollReveal>
+      {/* CTA with parallax */}
+      <ParallaxSection imgSrc={trainer1} imgAlt="Training" className="flex items-center" speed={0.3}>
+        <div className="section-padding w-full">
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="display-lg mb-6 text-foreground">Train With<br /><span className="text-gradient">The Best</span></h2>
+              <p className="text-lg text-muted-foreground mb-10 font-body">
+                Book a session and experience the difference expert coaching makes.
+              </p>
+              <Link to="/contact" className="btn-primary text-sm">
+                Book A Session <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </ScrollReveal>
+          </div>
         </div>
-      </section>
+      </ParallaxSection>
     </div>
   );
 };
