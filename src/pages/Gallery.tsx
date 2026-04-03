@@ -2,6 +2,8 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { useState, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParallaxSection from "@/components/ParallaxSection";
+import TextReveal from "@/components/TextReveal";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -65,6 +67,21 @@ const Gallery = () => {
         </div>
       </motion.section>
 
+      {/* Text reveal */}
+      <section className="section-padding pb-12">
+        <div className="max-w-4xl mx-auto">
+          <TextReveal
+            text="A space designed for those who demand more. Every corner of our facility exists to fuel your potential."
+            className="text-xl md:text-3xl lg:text-4xl font-display uppercase leading-tight text-foreground"
+          />
+        </div>
+      </section>
+
+      {/* Parallax divider */}
+      <ParallaxSection imgSrc={gallery5} imgAlt="Gym interior" className="h-[25vh] md:h-[35vh]" speed={0.4} overlay={false}>
+        <div className="absolute inset-0 bg-background/15" />
+      </ParallaxSection>
+
       {/* Masonry Grid */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
@@ -89,7 +106,6 @@ const Gallery = () => {
                       <span className="text-xs uppercase tracking-widest text-primary font-semibold font-body">{img.category}</span>
                       <p className="text-sm text-foreground font-body mt-1">{img.alt}</p>
                     </div>
-                    {/* Corner accents */}
                     <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-primary/0 group-hover:border-primary transition-all duration-500 rounded-tr-lg" />
                     <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-primary/0 group-hover:border-primary transition-all duration-500 rounded-bl-lg" />
                   </motion.div>

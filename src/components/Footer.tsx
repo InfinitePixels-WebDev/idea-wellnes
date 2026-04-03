@@ -1,5 +1,6 @@
-import React from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -8,10 +9,21 @@ import {
   Facebook,
   Twitter,
   Youtube,
+  ArrowUpRight,
 } from "lucide-react";
-import { FooterBackgroundGradient } from "@/components/ui/hover-footer";
+import logo from "@/assets/idea-wellness-logo.png";
 
 const Footer = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
+  const textX = useTransform(scrollYProgress, [0, 1], ["4%", "0%"]);
+
   const footerLinks = [
     {
       title: "Navigate",
@@ -35,23 +47,6 @@ const Footer = () => {
     },
   ];
 
-  const contactInfo = [
-    {
-      icon: <Mail size={18} className="text-primary" />,
-      text: "info@ideawellness.com",
-      href: "mailto:info@ideawellness.com",
-    },
-    {
-      icon: <Phone size={18} className="text-primary" />,
-      text: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
-    },
-    {
-      icon: <MapPin size={18} className="text-primary" />,
-      text: "123 Fitness Avenue, Downtown District",
-    },
-  ];
-
   const socialLinks = [
     { icon: <Instagram size={18} />, label: "Instagram", href: "#" },
     { icon: <Facebook size={18} />, label: "Facebook", href: "#" },
@@ -60,103 +55,125 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-secondary text-secondary-foreground overflow-hidden">
-      <FooterBackgroundGradient />
+    <footer ref={ref} className="relative bg-secondary text-secondary-foreground overflow-hidden">
+      {/* Subtle radial glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-20 md:pt-28 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand section */}
-          <div className="space-y-4">
-            <Link to="/" className="inline-flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-display text-sm">
-                IW
-              </span>
-              <span className="font-display text-xl uppercase">
-                <span className="text-primary">Idea</span> Wellness
-              </span>
-            </Link>
-            <p className="text-secondary-foreground/50 text-sm leading-relaxed font-body">
-              Where strength meets luxury. Premium fitness experiences designed for champions.
-            </p>
-          </div>
-
-          {/* Footer link sections */}
-          {footerLinks.map((section) => (
-            <div key={section.title}>
-              <h4 className="font-display text-sm uppercase tracking-widest mb-6 text-primary">
-                {section.title}
-              </h4>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.href}
-                      className="text-sm text-secondary-foreground/50 hover:text-primary hover:translate-x-1 transition-all duration-300 font-body inline-block"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+      <motion.div style={{ y, opacity, scale }} className="relative z-10">
+        {/* CTA banner */}
+        <div className="border-b border-secondary-foreground/10">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h3 className="font-display text-2xl md:text-4xl uppercase text-secondary-foreground leading-tight">
+                Ready To <span className="text-primary">Transform?</span>
+              </h3>
+              <p className="text-secondary-foreground/50 text-sm font-body mt-2 max-w-md">
+                Start your journey today and discover what you're truly capable of.
+              </p>
             </div>
-          ))}
-
-          {/* Contact section */}
-          <div>
-            <h4 className="font-display text-sm uppercase tracking-widest mb-6 text-primary">
-              Contact Us
-            </h4>
-            <ul className="space-y-4">
-              {contactInfo.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  {item.icon}
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="text-sm text-secondary-foreground/50 hover:text-primary transition-colors font-body"
-                    >
-                      {item.text}
-                    </a>
-                  ) : (
-                    <span className="text-sm text-secondary-foreground/50 font-body">
-                      {item.text}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <Link
+              to="/contact"
+              className="btn-primary text-xs shrink-0 group"
+            >
+              Get Started <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-secondary-foreground/20 to-transparent mb-8" />
+        {/* Main footer content */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-16 md:pt-20 pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            {/* Brand */}
+            <div className="space-y-5">
+              <Link to="/" className="inline-block">
+                <img
+                  src={logo}
+                  alt="Idea Wellness"
+                  className="h-8 w-auto invert"
+                />
+              </Link>
+              <p className="text-secondary-foreground/40 text-sm leading-relaxed font-body">
+                Where strength meets luxury. Premium fitness experiences designed for champions.
+              </p>
+              <div className="flex gap-3">
+                {socialLinks.map(({ icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="w-10 h-10 rounded-full border border-secondary-foreground/10 flex items-center justify-center text-secondary-foreground/40 transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_20px_hsl(var(--glow-primary))] hover:-translate-y-1"
+                  >
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
 
-        {/* Footer bottom */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex gap-3">
-            {socialLinks.map(({ icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className="w-10 h-10 rounded-full border border-secondary-foreground/15 flex items-center justify-center transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_20px_hsl(var(--glow-primary))] hover:-translate-y-1"
-              >
-                {icon}
-              </a>
+            {/* Link columns */}
+            {footerLinks.map((section) => (
+              <div key={section.title}>
+                <h4 className="font-display text-xs uppercase tracking-[0.2em] mb-6 text-primary">
+                  {section.title}
+                </h4>
+                <ul className="space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        to={link.href}
+                        className="text-sm text-secondary-foreground/40 hover:text-primary hover:translate-x-1 transition-all duration-300 font-body inline-block"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-display text-xs uppercase tracking-[0.2em] mb-6 text-primary">
+                Contact
+              </h4>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <Mail size={16} className="text-primary mt-0.5 shrink-0" />
+                  <a href="mailto:info@ideawellness.com" className="text-sm text-secondary-foreground/40 hover:text-primary transition-colors font-body">
+                    info@ideawellness.com
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Phone size={16} className="text-primary mt-0.5 shrink-0" />
+                  <a href="tel:+15551234567" className="text-sm text-secondary-foreground/40 hover:text-primary transition-colors font-body">
+                    +1 (555) 123-4567
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MapPin size={16} className="text-primary mt-0.5 shrink-0" />
+                  <span className="text-sm text-secondary-foreground/40 font-body">
+                    123 Fitness Avenue, Downtown
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <p className="text-xs text-secondary-foreground/30 font-body">
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-secondary-foreground/15 to-transparent mb-6" />
+
+          {/* Copyright */}
+          <p className="text-center text-xs text-secondary-foreground/25 font-body">
             © {new Date().getFullYear()} Idea Wellness. All rights reserved.
           </p>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Full-width IDEA WELLNESS text */}
-      <div className="relative z-10 w-full overflow-hidden mt-4 pb-4">
-        <h2 className="font-display text-[12vw] md:text-[10vw] leading-none uppercase text-secondary-foreground/[0.04] whitespace-nowrap text-center select-none">
+      {/* Full-width watermark with parallax slide */}
+      <motion.div style={{ x: textX }} className="relative z-0 w-full overflow-hidden pb-2">
+        <h2 className="font-display text-[14vw] md:text-[11vw] leading-[0.85] uppercase text-secondary-foreground/[0.03] whitespace-nowrap select-none tracking-tighter">
           IDEA WELLNESS
         </h2>
-      </div>
+      </motion.div>
     </footer>
   );
 };

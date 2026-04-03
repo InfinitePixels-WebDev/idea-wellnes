@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
-import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import logo from "@/assets/idea-wellness-logo.png";
 
@@ -23,21 +23,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on route change
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   const toggleMenu = useCallback(() => setOpen((prev) => !prev), []);
@@ -86,42 +78,75 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile toggle */}
+          {/* Mobile toggle — animated hamburger */}
           <div className="flex lg:hidden items-center gap-3">
             <ThemeToggle />
             <button
               onClick={toggleMenu}
-              className="relative z-50 p-2 text-foreground"
+              className="relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-[5px]"
               aria-label="Toggle menu"
             >
-              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <motion.span
+                animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="block w-6 h-[2px] bg-foreground origin-center"
+              />
+              <motion.span
+                animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.2 }}
+                className="block w-6 h-[2px] bg-foreground origin-center"
+              />
+              <motion.span
+                animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="block w-6 h-[2px] bg-foreground origin-center"
+              />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile fullscreen menu - simple CSS transition, no framer-motion */}
-      <div
-        className={`lg:hidden fixed inset-0 bg-background/98 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-6 transition-all duration-300 ${
-          open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-        }`}
-      >
-        {navLinks.map((link) => (
-          <Link
-            key={link.to}
-            to={link.to}
-            onClick={() => setOpen(false)}
-            className={`font-display text-3xl uppercase tracking-wider transition-colors duration-300 hover:text-primary ${
-              location.pathname === link.to ? "text-primary" : "text-foreground"
-            }`}
+      {/* Mobile fullscreen menu — staggered animation */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden fixed inset-0 bg-background/98 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-2"
           >
-            {link.label}
-          </Link>
-        ))}
-        <Link to="/contact" onClick={() => setOpen(false)} className="btn-primary text-sm mt-4">
-          Get In Touch
-        </Link>
-      </div>
+            {navLinks.map((link, i) => (
+              <motion.div
+                key={link.to}
+                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ delay: 0.05 + i * 0.07, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <Link
+                  to={link.to}
+                  onClick={() => setOpen(false)}
+                  className={`font-display text-3xl uppercase tracking-wider transition-colors duration-300 hover:text-primary block py-2 ${
+                    location.pathname === link.to ? "text-primary" : "text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+            >
+              <Link to="/contact" onClick={() => setOpen(false)} className="btn-primary text-sm mt-6">
+                Get In Touch
+              </Link>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

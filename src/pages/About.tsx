@@ -33,6 +33,14 @@ const About = () => {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
+  const valuesRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: valuesScroll } = useScroll({ target: valuesRef, offset: ["start end", "end start"] });
+  const valuesRotate = useTransform(valuesScroll, [0, 1], [3, -3]);
+
+  const teamRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: teamScroll } = useScroll({ target: teamRef, offset: ["start end", "end start"] });
+  const teamX = useTransform(teamScroll, [0, 1], ["-3%", "3%"]);
+
   return (
     <div className="overflow-hidden">
       {/* Hero — cinematic parallax */}
@@ -70,7 +78,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* Timeline with parallax lines */}
       <section className="section-padding bg-card">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
@@ -78,14 +86,12 @@ const About = () => {
             <h2 className="display-lg mb-16 text-foreground">The<br /><span className="text-gradient">Timeline</span></h2>
           </ScrollReveal>
           <div className="relative">
-            {/* Vertical line */}
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
             {timeline.map((item, i) => (
               <ScrollReveal key={item.year} delay={i * 0.1}>
                 <div className={`relative flex items-start gap-8 mb-12 last:mb-0 ${
                   i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}>
-                  {/* Dot */}
                   <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary -translate-x-1.5 mt-2 z-10 shadow-[0_0_12px_hsl(var(--glow-primary))]" />
                   <div className={`pl-12 md:pl-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}>
                     <span className="font-display text-4xl md:text-5xl text-primary/20">{item.year}</span>
@@ -104,18 +110,18 @@ const About = () => {
         <div className="absolute inset-0 bg-background/20" />
       </ParallaxSection>
 
-      {/* Values — overlapping cards */}
-      <section className="section-padding">
+      {/* Values — parallax tilt cards */}
+      <section ref={valuesRef} className="section-padding">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
             <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">What Drives Us</p>
             <h2 className="display-lg mb-16 text-foreground">Our<br /><span className="text-gradient">Foundation</span></h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <motion.div style={{ rotateX: valuesRotate }} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 perspective-[1200px]">
             {values.map((val, i) => (
               <ScrollReveal key={val.title} delay={i * 0.1}>
                 <motion.div
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ duration: 0.4 }}
                   className="glow-card p-8 md:p-10 h-full group"
                 >
@@ -131,11 +137,11 @@ const About = () => {
                 </motion.div>
               </ScrollReveal>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Stats with parallax bg */}
       <ParallaxSection imgSrc={gallery1} imgAlt="Gym interior" className="flex items-center" speed={0.3}>
         <div className="section-padding w-full">
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
@@ -147,14 +153,14 @@ const About = () => {
         </div>
       </ParallaxSection>
 
-      {/* Team */}
+      {/* Team — horizontal parallax drift */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
             <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Leadership</p>
             <h2 className="display-lg mb-16 text-foreground">The Team<br /><span className="text-gradient">Behind It All</span></h2>
           </ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <motion.div ref={teamRef} style={{ x: teamX }} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
               { img: trainer1, name: "Marcus Blake", role: "Founder & Head Coach" },
               { img: trainer2, name: "Elena Vasquez", role: "Training Director" },
@@ -166,6 +172,7 @@ const About = () => {
                   <div className="relative overflow-hidden rounded-2xl aspect-[3/4]">
                     <img src={person.img} alt={person.name} className="w-full h-full object-cover transition-transform duration-[1s] group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
                     <div className="absolute bottom-4 left-4 right-4 z-10">
                       <h3 className="font-display text-sm md:text-base uppercase text-foreground">{person.name}</h3>
                       <p className="text-primary text-xs font-semibold uppercase tracking-wider font-body">{person.role}</p>
@@ -174,25 +181,24 @@ const About = () => {
                 </div>
               </ScrollReveal>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Philosophy — cinematic text */}
-      <section className="section-padding bg-card relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="font-display text-[20vw] uppercase text-card-foreground/[0.02] select-none">STRONG</span>
+      {/* Philosophy — parallax text watermark */}
+      <ParallaxSection imgSrc={aboutHero} imgAlt="Training atmosphere" className="flex items-center" speed={0.4}>
+        <div className="section-padding w-full relative">
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <ScrollReveal>
+              <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Our Philosophy</p>
+              <h2 className="display-lg mb-8 text-foreground">Strength Is<br /><span className="text-gradient">A Lifestyle</span></h2>
+              <p className="text-lg text-muted-foreground leading-relaxed font-body max-w-2xl mx-auto">
+                We don't just build bodies — we build discipline, resilience, and confidence. Every session at Idea Wellness is designed to challenge you, inspire you, and push you closer to the person you're meant to become.
+              </p>
+            </ScrollReveal>
+          </div>
         </div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Our Philosophy</p>
-            <h2 className="display-lg mb-8 text-foreground">Strength Is<br /><span className="text-gradient">A Lifestyle</span></h2>
-            <p className="text-lg text-muted-foreground leading-relaxed font-body max-w-2xl mx-auto">
-              We don't just build bodies — we build discipline, resilience, and confidence. Every session at Idea Wellness is designed to challenge you, inspire you, and push you closer to the person you're meant to become.
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
+      </ParallaxSection>
     </div>
   );
 };
