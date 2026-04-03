@@ -9,7 +9,7 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
-import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
+import { FooterBackgroundGradient } from "@/components/ui/hover-footer";
 
 const Footer = () => {
   const footerLinks = [
@@ -88,10 +88,10 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 {section.links.map((link) => (
-                  <li key={link.label} className="flex items-center gap-2">
+                  <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-sm text-secondary-foreground/50 hover:text-primary hover:translate-x-1 transition-all duration-300 font-body"
+                      className="text-sm text-secondary-foreground/50 hover:text-primary hover:translate-x-1 transition-all duration-300 font-body inline-block"
                     >
                       {link.label}
                     </Link>
@@ -133,7 +133,6 @@ const Footer = () => {
 
         {/* Footer bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Social icons */}
           <div className="flex gap-3">
             {socialLinks.map(({ icon, label, href }) => (
               <a
@@ -146,17 +145,17 @@ const Footer = () => {
               </a>
             ))}
           </div>
-
-          {/* Copyright */}
           <p className="text-xs text-secondary-foreground/30 font-body">
             © {new Date().getFullYear()} Idea Wellness. All rights reserved.
           </p>
         </div>
       </div>
 
-      {/* Text hover effect */}
-      <div className="relative z-10 h-32 md:h-48 flex items-center justify-center mt-4">
-        <TextHoverEffect text="IDEA WELLNESS" />
+      {/* Full-width IDEA WELLNESS text */}
+      <div className="relative z-10 w-full overflow-hidden mt-4 pb-4">
+        <h2 className="font-display text-[12vw] md:text-[10vw] leading-none uppercase text-secondary-foreground/[0.04] whitespace-nowrap text-center select-none">
+          IDEA WELLNESS
+        </h2>
       </div>
     </footer>
   );
