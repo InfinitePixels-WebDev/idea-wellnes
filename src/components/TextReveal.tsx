@@ -10,7 +10,7 @@ const TextReveal = ({ text, className = "" }: TextRevealProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.9", "start 0.3"],
+    offset: ["start 0.7", "start 0.2"],
   });
 
   const words = text.split(" ");
@@ -37,10 +37,11 @@ const Word = ({
   range: [number, number];
   progress: any;
 }) => {
-  const opacity = useTransform(progress, range, [0.15, 1]);
+  const opacity = useTransform(progress, range, [0.12, 1]);
+  const y = useTransform(progress, range, [8, 0]);
 
   return (
-    <motion.span style={{ opacity }} className="inline-block">
+    <motion.span style={{ opacity, y }} className="inline-block">
       {word}
     </motion.span>
   );

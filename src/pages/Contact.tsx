@@ -3,7 +3,9 @@ import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from "lucide-react";
 import { useState, useRef } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParallaxSection from "@/components/ParallaxSection";
+import TextReveal from "@/components/TextReveal";
 import gallery3 from "@/assets/gallery-3.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
@@ -11,6 +13,7 @@ const Contact = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +33,7 @@ const Contact = () => {
     <div className="overflow-hidden">
       {/* Hero */}
       <section ref={heroRef} className="relative min-h-[60vh] flex items-end overflow-hidden">
-        <motion.div style={{ y: heroY }} className="absolute inset-0">
+        <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
           <img src={gallery3} alt="Contact" className="w-full h-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
@@ -53,8 +56,18 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Text reveal */}
+      <section className="section-padding pb-8">
+        <div className="max-w-3xl mx-auto">
+          <TextReveal
+            text="Whether you're ready to start or just curious, we'd love to hear from you. Your transformation begins with a conversation."
+            className="text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight text-foreground"
+          />
+        </div>
+      </section>
+
       {/* Content */}
-      <section className="section-padding">
+      <section className="section-padding pt-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12">
           {/* Form — 3 cols */}
           <ScrollReveal className="lg:col-span-3">
@@ -172,6 +185,20 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      {/* Parallax CTA */}
+      <ParallaxSection imgSrc={gallery1} imgAlt="Gym interior" className="flex items-center mt-12" speed={0.3}>
+        <div className="section-padding w-full">
+          <div className="max-w-3xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="display-lg mb-6 text-foreground">Your Journey<br /><span className="text-gradient">Starts Here</span></h2>
+              <p className="text-lg text-muted-foreground font-body">
+                Visit us today and see what makes Idea Wellness different.
+              </p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </ParallaxSection>
     </div>
   );
 };
