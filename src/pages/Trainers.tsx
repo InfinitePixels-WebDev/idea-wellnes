@@ -100,8 +100,8 @@ const Trainers = () => {
       </ParallaxSection>
 
       {/* Trainer profiles — alternating full-width cards */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto flex flex-col gap-12 md:gap-24">
+      <section ref={profilesRef} className="section-padding">
+        <motion.div style={{ y: profilesY }} className="max-w-7xl mx-auto flex flex-col gap-12 md:gap-24">
           {trainers.map((t, i) => {
             return (
               <ScrollReveal key={t.name} delay={0.1}>
@@ -155,7 +155,7 @@ const Trainers = () => {
               </ScrollReveal>
             );
           })}
-        </div>
+        </motion.div>
       </section>
 
       {/* CTA with parallax */}
