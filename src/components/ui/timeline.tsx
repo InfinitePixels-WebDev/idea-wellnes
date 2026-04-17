@@ -9,38 +9,60 @@ interface TimelineEntry {
 }
 
 interface TimelineWordRevealProps {
-  text: string;
+  text?: string;
+  lines?: string[];
+  showBullets?: boolean;
   className?: string;
 }
 
 export const TimelineWordReveal = ({
   text,
+  lines,
+  showBullets = false,
   className = "",
 }: TimelineWordRevealProps) => {
   const textRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: textRef,
-    offset: ["start 0.7", "start 0.2"],
+    offset: ["start 0.82", "end 0.25"],
   });
-  const words = text.split(" ");
+
+  const revealLines = lines ?? [text ?? ""];
+  const lineCount = Math.max(revealLines.length, 1);
 
   return (
     <div ref={textRef} className={className}>
-      <p className="flex flex-wrap gap-x-2 gap-y-1">
-        {words.map((word, index) => {
-          const start = index / words.length;
-          const end = start + 1 / words.length;
+      <div className={revealLines.length > 1 ? "space-y-4" : ""}>
+        {revealLines.map((line, lineIndex) => {
+          const words = line.split(" ");
+          const lineStart = lineIndex / lineCount;
+          const lineEnd = (lineIndex + 1) / lineCount;
+          const lineRange = lineEnd - lineStart;
 
           return (
-            <TimelineWord
-              key={`${word}-${index}`}
-              word={word}
-              range={[start, end]}
-              progress={scrollYProgress}
-            />
+            <div key={`line-${lineIndex}`} className={showBullets ? "relative pl-6" : ""}>
+              {showBullets ? (
+                <span className="absolute left-0 top-3 h-3 w-3 rounded-full border border-border bg-background" />
+              ) : null}
+              <p className="flex flex-wrap gap-x-2 gap-y-1">
+                {words.map((word, wordIndex) => {
+                  const wordStart = lineStart + (wordIndex / words.length) * lineRange;
+                  const wordEnd = lineStart + ((wordIndex + 1) / words.length) * lineRange;
+
+                  return (
+                    <TimelineWord
+                      key={`${lineIndex}-${word}-${wordIndex}`}
+                      word={word}
+                      range={[wordStart, wordEnd]}
+                      progress={scrollYProgress}
+                    />
+                  );
+                })}
+              </p>
+            </div>
           );
         })}
-      </p>
+      </div>
     </div>
   );
 };
@@ -54,11 +76,12 @@ const TimelineWord = ({
   range: [number, number];
   progress: any;
 }) => {
-  const color = useTransform(progress, range, ["rgb(148 163 184)", "rgb(255 255 255)"]);
+  const color = useTransform(progress, range, ["rgb(82 82 91)", "rgb(255 255 255)"]);
   const y = useTransform(progress, range, [8, 0]);
+  const opacity = useTransform(progress, range, [0.45, 1]);
 
   return (
-    <motion.span style={{ color, y }} className="inline-block">
+    <motion.span style={{ color, y, opacity }} className="inline-block">
       {word}
     </motion.span>
   );
@@ -98,26 +121,23 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10"
-          >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-background flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-muted border border-border p-2" />
-              </div>
+          <div key={index} className="relative grid grid-cols-1 md:grid-cols-2 md:gap-16 pt-10 md:pt-24">
+            <div
+              className={`relative pl-12 md:pl-0 ${
+                index % 2 === 0 ? "md:col-start-1 md:pr-12" : "md:col-start-2 md:pl-12"
+              }`}
+            >
               <TimelineWordReveal
                 text={item.title}
-                className="hidden md:block md:pl-20 text-2xl md:text-5xl font-display uppercase leading-tight"
-              />
-            </div>
-
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <TimelineWordReveal
-                text={item.title}
-                className="md:hidden block text-2xl mb-4 text-left font-display uppercase leading-tight"
+                className="text-2xl md:text-5xl mb-4 font-display uppercase leading-tight"
               />
               {item.content}
+            </div>
+
+            <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-2 z-10">
+              <div className="h-10 w-10 rounded-full bg-background flex items-center justify-center">
+                <div className="h-4 w-4 rounded-full bg-muted border border-border" />
+              </div>
             </div>
           </div>
         ))}
@@ -125,7 +145,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           style={{
             height: height + "px",
           }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
+          className="absolute md:left-1/2 md:-translate-x-1/2 left-4 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
         >
           <motion.div
             style={{

@@ -8,23 +8,15 @@ export default function TimelineDemo() {
       content: (
         <div>
           <TimelineWordReveal
-            text="Idea Wellness opened its first performance club with one mission: make elite coaching and disciplined training accessible to everyday athletes."
-            className="mb-6 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
+            lines={[
+              "Idea Wellness launched its first performance club with a clear mission: elite coaching for everyday athletes.",
+              "First Idea Wellness location opened",
+              "Core strength and conditioning method introduced",
+              "Personalized member onboarding launched",
+            ]}
+            showBullets
+            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
           />
-          <div className="mb-8">
-            <TimelineWordReveal
-              text="Opened the first Idea Wellness location"
-              className="mb-3 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-            <TimelineWordReveal
-              text="Built the original strength and conditioning blueprint"
-              className="mb-3 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-            <TimelineWordReveal
-              text="Launched personalized onboarding for new members"
-              className="text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-          </div>
         </div>
       ),
     },
@@ -33,27 +25,16 @@ export default function TimelineDemo() {
       content: (
         <div>
           <TimelineWordReveal
-            text="The community crossed 1,000 active members and Idea Wellness launched its second location with dedicated strength, conditioning, and recovery zones."
-            className="mb-6 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
+            lines={[
+              "The community passed 1,000 active members as Idea Wellness opened a second location.",
+              "Group classes and one-on-one coaching became the center of the member journey.",
+              "1,000 active members milestone reached",
+              "Second location opened",
+              "Structured coaching programs expanded",
+            ]}
+            showBullets
+            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
           />
-          <TimelineWordReveal
-            text="Group classes and one-on-one coaching became the core of our member experience, improving consistency, confidence, and long-term results."
-            className="mb-6 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-          />
-          <div className="mb-8">
-            <TimelineWordReveal
-              text="Crossed 1,000 active members"
-              className="mb-3 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-            <TimelineWordReveal
-              text="Opened a second location"
-              className="mb-3 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-            <TimelineWordReveal
-              text="Added structured group and coaching programs"
-              className="text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-          </div>
         </div>
       ),
     },
@@ -62,31 +43,17 @@ export default function TimelineDemo() {
       content: (
         <div>
           <TimelineWordReveal
-            text="Idea Wellness reached 12 locations nationwide and was recognized as a leading premium gym experience."
-            className="mb-4 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
+            lines={[
+              "Idea Wellness reached 12 locations and became a recognized premium fitness brand.",
+              "Expanded to 12 performance clubs",
+              "Recovery programs launched",
+              "Coach education system scaled",
+              "Member journey analytics introduced",
+              "98% satisfaction maintained",
+            ]}
+            showBullets
+            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
           />
-          <div className="mb-8">
-            <TimelineWordReveal
-              text="Expanded to 12 high-performance clubs"
-              className="mb-3 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-            <TimelineWordReveal
-              text="Launched science-backed recovery programs"
-              className="mb-3 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-            <TimelineWordReveal
-              text="Built a 50+ coach education system"
-              className="mb-3 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-            <TimelineWordReveal
-              text="Introduced member journey analytics"
-              className="mb-3 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-            <TimelineWordReveal
-              text="Maintained 98% member satisfaction"
-              className="text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
-            />
-          </div>
         </div>
       ),
     },
