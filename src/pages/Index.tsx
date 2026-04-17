@@ -100,19 +100,22 @@ const Index = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Scroll down — vertical animation on side */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="hidden md:flex absolute bottom-10 right-8 z-10 flex-col items-center gap-4"
         >
-          <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-1.5">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-              className="w-1.5 h-3 bg-primary rounded-full"
-            />
-          </div>
+          <span className="text-[10px] uppercase tracking-[0.4em] text-foreground/60 font-semibold [writing-mode:vertical-rl] rotate-180">
+            Scroll Down
+          </span>
+          <motion.div
+            animate={{ scaleY: [0, 1, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            style={{ transformOrigin: "top" }}
+            className="w-px h-12 bg-gradient-to-b from-primary to-transparent"
+          />
         </motion.div>
       </section>
 
