@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "./ThemeToggle";
+import { AnimatedThemeToggler as ThemeToggle } from "./ui/animated-theme-toggler";
 import logo from "@/assets/idea-wellness-logo.png";
 
 const navLinks = [
