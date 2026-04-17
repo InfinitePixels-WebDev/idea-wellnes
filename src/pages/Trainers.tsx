@@ -48,6 +48,11 @@ const Trainers = () => {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
+
+  const profilesRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: profilesScroll } = useScroll({ target: profilesRef, offset: ["start end", "end start"] });
+  const profilesY = useTransform(profilesScroll, [0, 1], [50, -50]);
 
   return (
     <div className="overflow-hidden">
@@ -57,7 +62,7 @@ const Trainers = () => {
           <img src={gallery2} alt="Training session" className="w-full h-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-16 md:pb-24 w-full">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-16 md:pb-24 w-full">
           <motion.p
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -81,10 +86,7 @@ const Trainers = () => {
           >
             Our certified experts bring decades of experience across every discipline.
           </motion.p>
-        </div>
-      </section>
-
-      {/* Philosophy text reveal */}
+        </motion.div>
       <section className="section-padding">
         <div className="max-w-4xl mx-auto">
           <TextReveal
