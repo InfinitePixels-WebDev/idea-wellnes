@@ -32,7 +32,7 @@ export const AnimatedThemeToggler = ({ className }: Props) => {
       return;
     }
 
-    // @ts-expect-error - startViewTransition not yet in all TS lib versions
+    // @ts-ignore - startViewTransition not yet typed in all TS lib versions
     await document.startViewTransition(() => {
       flushSync(() => {
         apply();
