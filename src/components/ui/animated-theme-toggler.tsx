@@ -68,7 +68,7 @@ export const AnimatedThemeToggler = ({ className }: Props) => {
       onClick={changeTheme}
       aria-label="Toggle theme"
       className={cn(
-        "relative inline-flex items-center justify-center w-9 h-9 rounded-full border border-border/50 bg-card/40 backdrop-blur-sm text-foreground transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_15px_hsl(var(--glow-primary))]",
+        "relative inline-flex items-center justify-center w-9 h-9 rounded-full text-foreground/70 transition-colors duration-300 hover:text-primary",
         className,
       )}
     >
