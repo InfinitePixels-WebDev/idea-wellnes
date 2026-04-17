@@ -5,6 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ParallaxSection from "@/components/ParallaxSection";
 import TextReveal from "@/components/TextReveal";
+import TimelineDemo from "@/components/timeline-demo";
 import aboutHero from "@/assets/about-hero.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
@@ -18,13 +19,6 @@ const values = [
   { icon: Eye, title: "Our Vision", desc: "To become the global standard for luxury fitness — where cutting-edge science meets an unmatched training atmosphere." },
   { icon: Heart, title: "Our Values", desc: "Discipline, community, innovation, and relentless pursuit of greatness. We believe strength is earned, never given." },
   { icon: Award, title: "Our Standard", desc: "Every detail — from equipment to coaching — meets the highest standard. We accept nothing less than extraordinary." },
-];
-
-const timeline = [
-  { year: "2011", title: "The Beginning", desc: "Founded with a single location and a vision to redefine fitness." },
-  { year: "2014", title: "Community Grows", desc: "Reached 1,000 members and opened our second location." },
-  { year: "2018", title: "Going Premium", desc: "Launched our luxury recovery spa and expanded to 8 locations." },
-  { year: "2023", title: "Industry Leaders", desc: "Named #1 premium gym brand with 12 locations nationwide." },
 ];
 
 const About = () => {
@@ -79,30 +73,14 @@ const About = () => {
       </section>
 
       {/* Timeline with parallax lines */}
-      <section className="section-padding bg-card">
+      <section className="section-padding">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
             <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Our Journey</p>
             <h2 className="display-lg mb-16 text-foreground">The<br /><span className="text-gradient">Timeline</span></h2>
           </ScrollReveal>
-          <div className="relative">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
-            {timeline.map((item, i) => (
-              <ScrollReveal key={item.year} delay={i * 0.1}>
-                <div className={`relative flex items-start gap-8 mb-12 last:mb-0 ${
-                  i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}>
-                  <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary -translate-x-1.5 mt-2 z-10 shadow-[0_0_12px_hsl(var(--glow-primary))]" />
-                  <div className={`pl-12 md:pl-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}>
-                    <span className="font-display text-4xl md:text-5xl text-primary/20">{item.year}</span>
-                    <h3 className="font-display text-lg uppercase mt-2 text-card-foreground">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground font-body mt-2">{item.desc}</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
         </div>
+        <TimelineDemo />
       </section>
 
       {/* Parallax image break */}
