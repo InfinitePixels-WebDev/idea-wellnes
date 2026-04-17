@@ -37,43 +37,64 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           scrolled
-            ? "glass-nav shadow-lg"
-            : "bg-transparent border-b border-transparent"
+            ? "bg-background/70 backdrop-blur-xl border-b border-border/40"
+            : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="relative z-50">
+          <Link to="/" className="relative z-50 group">
             <img
               src={logo}
               alt="Idea Wellness"
-              className="h-8 md:h-10 w-auto dark:invert"
+              className="h-8 md:h-9 w-auto dark:invert transition-opacity duration-300 group-hover:opacity-70"
             />
           </Link>
 
           {/* Desktop */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`relative text-xs uppercase tracking-widest font-semibold px-4 py-2 rounded-full transition-all duration-300 ${
-                  location.pathname === link.to
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {link.label}
-                {location.pathname === link.to && (
-                  <span className="absolute inset-0 rounded-full border border-primary/30" />
-                )}
-              </Link>
-            ))}
-            <div className="ml-4 flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-10">
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.to;
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="group relative text-[11px] uppercase tracking-[0.25em] font-medium py-2"
+                  >
+                    <span
+                      className={`transition-colors duration-300 ${
+                        isActive
+                          ? "text-foreground"
+                          : "text-muted-foreground/70 group-hover:text-foreground"
+                      }`}
+                    >
+                      {link.label}
+                    </span>
+                    {/* Active indicator — animated underline */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute -bottom-0.5 left-0 right-0 h-px bg-foreground"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    {/* Hover underline */}
+                    {!isActive && (
+                      <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-foreground/40 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="flex items-center gap-5 pl-8 border-l border-border/40">
               <ThemeToggle />
-              <Link to="/contact" className="btn-primary text-xs py-3 px-6">
-                Get In Touch
+              <Link
+                to="/contact"
+                className="text-[11px] uppercase tracking-[0.25em] font-medium text-foreground hover:text-primary transition-colors duration-300"
+              >
+                Get In Touch →
               </Link>
             </div>
           </div>
@@ -89,17 +110,17 @@ const Navbar = () => {
               <motion.span
                 animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="block w-6 h-[2px] bg-foreground origin-center"
+                className="block w-6 h-[1.5px] bg-foreground origin-center"
               />
               <motion.span
                 animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
                 transition={{ duration: 0.2 }}
-                className="block w-6 h-[2px] bg-foreground origin-center"
+                className="block w-6 h-[1.5px] bg-foreground origin-center"
               />
               <motion.span
                 animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="block w-6 h-[2px] bg-foreground origin-center"
+                className="block w-6 h-[1.5px] bg-foreground origin-center"
               />
             </button>
           </div>
