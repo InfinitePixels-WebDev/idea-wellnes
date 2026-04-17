@@ -14,6 +14,11 @@ const Contact = () => {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
+
+  const formRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: formScroll } = useScroll({ target: formRef, offset: ["start end", "end start"] });
+  const formY = useTransform(formScroll, [0, 1], [60, -60]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +42,7 @@ const Contact = () => {
           <img src={gallery3} alt="Contact" className="w-full h-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-16 md:pb-24 w-full">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-16 md:pb-24 w-full">
           <motion.p
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -53,7 +58,7 @@ const Contact = () => {
           >
             Let's<br /><span className="text-gradient">Connect</span>
           </motion.h1>
-        </div>
+        </motion.div>
       </section>
 
       {/* Text reveal */}
@@ -67,8 +72,8 @@ const Contact = () => {
       </section>
 
       {/* Content */}
-      <section className="section-padding pt-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12">
+      <section ref={formRef} className="section-padding pt-8">
+        <motion.div style={{ y: formY }} className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12">
           {/* Form — 3 cols */}
           <ScrollReveal className="lg:col-span-3">
             <div className="glow-card p-8 md:p-12">
@@ -183,7 +188,7 @@ const Contact = () => {
               </div>
             </ScrollReveal>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Parallax CTA */}
