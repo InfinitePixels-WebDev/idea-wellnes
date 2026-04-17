@@ -87,6 +87,9 @@ const Trainers = () => {
             Our certified experts bring decades of experience across every discipline.
           </motion.p>
         </motion.div>
+      </section>
+
+      {/* Philosophy text reveal */}
       <section className="section-padding">
         <div className="max-w-4xl mx-auto">
           <TextReveal
