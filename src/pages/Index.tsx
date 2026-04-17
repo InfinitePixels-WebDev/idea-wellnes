@@ -106,7 +106,7 @@ const Index = () => {
           transition={{ repeat: Infinity, duration: 2 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-1.5">
+          <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-1.5 mt-[10px]">
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
