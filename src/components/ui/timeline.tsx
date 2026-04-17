@@ -76,9 +76,12 @@ const TimelineWord = ({
   range: [number, number];
   progress: any;
 }) => {
-  const color = useTransform(progress, range, ["rgb(82 82 91)", "rgb(255 255 255)"]);
+  const color = useTransform(progress, range, [
+    "hsl(var(--muted-foreground))",
+    "hsl(var(--foreground))",
+  ]);
   const y = useTransform(progress, range, [8, 0]);
-  const opacity = useTransform(progress, range, [0.45, 1]);
+  const opacity = useTransform(progress, range, [0.5, 1]);
 
   return (
     <motion.span style={{ color, y, opacity }} className="inline-block">

@@ -33,6 +33,7 @@ const Navbar = () => {
   }, [open]);
 
   const toggleMenu = useCallback(() => setOpen((prev) => !prev), []);
+  const topNav = !scrolled;
 
   return (
     <>
@@ -48,7 +49,9 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Idea Wellness"
-              className="h-8 md:h-9 w-auto dark:invert transition-opacity duration-300 group-hover:opacity-70"
+              className={`h-8 md:h-9 w-auto transition-opacity duration-300 group-hover:opacity-70 ${
+                topNav ? "invert" : "dark:invert"
+              }`}
             />
           </Link>
 
@@ -66,8 +69,12 @@ const Navbar = () => {
                     <span
                       className={`transition-colors duration-300 ${
                         isActive
-                          ? "text-foreground"
-                          : "text-muted-foreground/70 group-hover:text-foreground"
+                          ? topNav
+                            ? "text-white"
+                            : "text-foreground"
+                          : topNav
+                            ? "text-white/70 group-hover:text-white"
+                            : "text-muted-foreground/80 group-hover:text-foreground"
                       }`}
                     >
                       {link.label}
@@ -76,23 +83,31 @@ const Navbar = () => {
                     {isActive && (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute -bottom-0.5 left-0 right-0 h-px bg-foreground"
+                        className={`absolute -bottom-0.5 left-0 right-0 h-px ${
+                          topNav ? "bg-white" : "bg-foreground"
+                        }`}
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
                     {/* Hover underline */}
                     {!isActive && (
-                      <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-foreground/40 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+                      <span
+                        className={`absolute -bottom-0.5 left-0 right-0 h-px origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out ${
+                          topNav ? "bg-white/50" : "bg-foreground/40"
+                        }`}
+                      />
                     )}
                   </Link>
                 );
               })}
             </div>
             <div className="flex items-center gap-5 pl-8 border-l border-border/40">
-              <ThemeToggle />
+              <ThemeToggle className={topNav ? "text-white/80 hover:text-white" : undefined} />
               <Link
                 to="/contact"
-                className="text-[11px] uppercase tracking-[0.25em] font-medium text-foreground hover:text-primary transition-colors duration-300"
+                className={`text-[11px] uppercase tracking-[0.25em] font-medium transition-colors duration-300 ${
+                  topNav ? "text-white hover:text-primary" : "text-foreground hover:text-primary"
+                }`}
               >
                 Get In Touch →
               </Link>
@@ -101,7 +116,7 @@ const Navbar = () => {
 
           {/* Mobile toggle — animated hamburger */}
           <div className="flex lg:hidden items-center gap-3">
-            <ThemeToggle />
+            <ThemeToggle className={topNav && !open ? "text-white/80 hover:text-white" : undefined} />
             <button
               onClick={toggleMenu}
               className="relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-[5px]"
@@ -110,17 +125,23 @@ const Navbar = () => {
               <motion.span
                 animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="block w-6 h-[1.5px] bg-foreground origin-center"
+                className={`block w-6 h-[1.5px] origin-center ${
+                  topNav && !open ? "bg-white" : "bg-foreground"
+                }`}
               />
               <motion.span
                 animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
                 transition={{ duration: 0.2 }}
-                className="block w-6 h-[1.5px] bg-foreground origin-center"
+                className={`block w-6 h-[1.5px] origin-center ${
+                  topNav && !open ? "bg-white" : "bg-foreground"
+                }`}
               />
               <motion.span
                 animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="block w-6 h-[1.5px] bg-foreground origin-center"
+                className={`block w-6 h-[1.5px] origin-center ${
+                  topNav && !open ? "bg-white" : "bg-foreground"
+                }`}
               />
             </button>
           </div>

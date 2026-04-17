@@ -23,7 +23,7 @@ const ThemeToggle = () => {
       className="relative p-2 rounded-full border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_hsl(var(--glow-primary))]"
       aria-label="Toggle theme"
     >
-      {dark ? <Sun className="h-4 w-4 text-primary" /> : <Moon className="h-4 w-4 text-foreground" />}
+      {dark ? <Sun className="h-5 w-5 text-primary" /> : <Moon className="h-5 w-5 text-foreground" />}
     </button>
   );
 };

@@ -37,7 +37,7 @@ const Contact = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero */}
-      <section ref={heroRef} className="relative min-h-[60vh] flex items-end overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[80vh] flex items-end overflow-hidden">
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
           <img src={gallery3} alt="Contact" className="w-full h-full object-cover" />
         </motion.div>

@@ -153,7 +153,7 @@ const Footer = () => {
 
       {/* Full-width watermark */}
       <div className="w-full overflow-hidden pb-2">
-        <h2 className="font-display text-[14vw] md:text-[11vw] leading-[0.85] uppercase text-secondary-foreground/[0.03] whitespace-nowrap select-none tracking-tighter text-center">
+        <h2 className="font-display text-[10.5vw] md:text-[11vw] leading-[0.85] uppercase text-secondary-foreground/[0.03] whitespace-nowrap select-none tracking-[-0.02em] md:tracking-tighter text-center">
           IDEA WELLNESS
         </h2>
       </div>

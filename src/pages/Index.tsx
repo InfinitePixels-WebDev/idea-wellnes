@@ -57,7 +57,7 @@ const Index = () => {
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
         
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-center max-w-5xl mx-auto px-6 pt-20">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-left w-full px-6 md:px-12 lg:px-20 pt-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -81,7 +81,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 font-body"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 font-body"
           >
             Where elite training meets luxury wellness. Push beyond limits in a facility built for champions.
           </motion.p>
@@ -89,7 +89,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-start"
           >
             <Link to="/contact" className="btn-primary text-sm">
               Start Your Journey <ArrowRight className="ml-2 h-4 w-4" />

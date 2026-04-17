@@ -72,7 +72,7 @@ export const AnimatedThemeToggler = ({ className }: Props) => {
         className,
       )}
     >
-      {isDark ? <SunDim className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      {isDark ? <SunDim className="h-6 w-6" /> : <Moon className="h-5 w-5" />}
     </button>
   );
 };

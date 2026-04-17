@@ -42,7 +42,7 @@ const Gallery = () => {
       <motion.section
         ref={heroRef}
         style={{ scale: heroScale, opacity: heroOpacity }}
-        className="relative min-h-[60vh] flex items-end overflow-hidden"
+        className="relative min-h-[80vh] flex items-end overflow-hidden"
       >
         <div className="absolute inset-0">
           <img src={gallery6} alt="Gallery" className="w-full h-full object-cover" />

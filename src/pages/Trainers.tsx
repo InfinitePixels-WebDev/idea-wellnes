@@ -57,12 +57,12 @@ const Trainers = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero — split layout with parallax */}
-      <section ref={heroRef} className="relative min-h-[70vh] flex items-end overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[80vh] flex items-end overflow-hidden">
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
           <img src={gallery2} alt="Training session" className="w-full h-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-16 md:pb-24 w-full">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-10 md:pb-16 w-full">
           <motion.p
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
