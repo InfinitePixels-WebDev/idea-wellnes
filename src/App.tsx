@@ -1,8 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -12,8 +15,67 @@ import Trainers from "./pages/Trainers.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import { Loader } from "@/components/Loader";
+import { PageTransition } from "@/components/PageTransition";
 
 const queryClient = new QueryClient();
+
+const AppContent = () => {
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // When the app initializes, redirect to the Home page
+    navigate("/");
+    
+    // Smooth loader timer for exactly 3 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Lock scroll during loading
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      // Ensure the page always starts smoothly at the absolute top (hero section)
+      window.scrollTo(0, 0);
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [loading]);
+
+  return (
+    <>
+      <AnimatePresence>
+        {loading && <Loader key="loader" />}
+      </AnimatePresence>
+
+      <div className="flex flex-col min-h-screen w-full">
+        <Navbar />
+        <main className="flex-grow w-full">
+          <AnimatePresence mode="wait" initial={false}>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+              <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+              <Route path="/trainers" element={<PageTransition><Trainers /></PageTransition>} />
+              <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
+              <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+              <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+            </Routes>
+          </AnimatePresence>
+        </main>
+        <Footer />
+      </div>
+    </>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -22,16 +84,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/trainers" element={<Trainers />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
+        <AppContent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

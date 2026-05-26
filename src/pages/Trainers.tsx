@@ -59,7 +59,7 @@ const Trainers = () => {
       {/* Hero — split layout with parallax */}
       <section ref={heroRef} className="relative min-h-[80vh] flex items-end overflow-hidden">
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
-          <img src={gallery2} alt="Training session" className="w-full h-full object-cover" />
+          <img src="/converted_jpg/IMG_3920.jpg" alt="Training session" loading="lazy" className="w-full h-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
         <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-10 md:pb-16 w-full">
@@ -100,7 +100,7 @@ const Trainers = () => {
       </section>
 
       {/* Parallax image divider */}
-      <ParallaxSection imgSrc={gallery5} imgAlt="Gym atmosphere" className="h-[30vh] md:h-[40vh]" speed={0.5} overlay={false}>
+      <ParallaxSection imgSrc="/converted_jpg/IMG_0639.jpg" imgAlt="Gym atmosphere" className="h-[30vh] md:h-[40vh]" speed={0.5} overlay={false}>
         <div className="absolute inset-0 bg-background/20" />
       </ParallaxSection>
 
@@ -121,6 +121,7 @@ const Trainers = () => {
                       <img
                         src={t.img}
                         alt={t.name}
+                        loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
@@ -164,7 +165,7 @@ const Trainers = () => {
       </section>
 
       {/* CTA with parallax */}
-      <ParallaxSection imgSrc={trainer1} imgAlt="Training" className="flex items-center" speed={0.3}>
+      <ParallaxSection imgSrc="/converted_jpg/IMG_0631.jpg" imgAlt="Training" className="flex items-center" speed={0.3}>
         <div className="section-padding w-full">
           <div className="max-w-4xl mx-auto text-center">
             <ScrollReveal>

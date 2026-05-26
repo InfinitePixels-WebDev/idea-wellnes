@@ -4,9 +4,6 @@ import {
   Phone,
   MapPin,
   Instagram,
-  Facebook,
-  Twitter,
-  Youtube,
   ArrowUpRight,
 } from "lucide-react";
 import logo from "@/assets/idea-wellness-logo.png";
@@ -17,29 +14,26 @@ const Footer = () => {
       title: "Navigate",
       links: [
         { label: "Home", href: "/" },
-        { label: "About", href: "/about" },
-        { label: "Trainers", href: "/trainers" },
-        { label: "Gallery", href: "/gallery" },
-        { label: "Contact", href: "/contact" },
+        { label: "About Us", href: "/about" },
+        { label: "Elite Classes", href: "/gallery" },
+        { label: "Photo Gallery", href: "/gallery" },
+        { label: "Contact Us", href: "/contact" },
       ],
     },
     {
-      title: "Facilities",
+      title: "Core Offerings",
       links: [
-        { label: "Weight Room", href: "#" },
-        { label: "Cardio Zone", href: "#" },
-        { label: "Recovery Spa", href: "#" },
-        { label: "Boxing Ring", href: "#" },
-        { label: "Olympic Pool", href: "#" },
+        { label: "CrossFit & HIIT", href: "/gallery" },
+        { label: "Pilates & Core Training", href: "/gallery" },
+        { label: "Bodybuilding & Strength", href: "/gallery" },
+        { label: "Boxing & Kickboxing", href: "/gallery" },
+        { label: "Kids Fit & Ballet", href: "/gallery" },
       ],
     },
   ];
 
   const socialLinks = [
-    { icon: <Instagram size={18} />, label: "Instagram", href: "#" },
-    { icon: <Facebook size={18} />, label: "Facebook", href: "#" },
-    { icon: <Twitter size={18} />, label: "Twitter", href: "#" },
-    { icon: <Youtube size={18} />, label: "Youtube", href: "#" },
+    { icon: <Instagram size={18} />, label: "Instagram", href: "https://www.instagram.com/ideawellness/" }
   ];
 
   return (
@@ -49,17 +43,17 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h3 className="font-display text-2xl md:text-4xl uppercase text-secondary-foreground leading-tight">
-              Ready To <span className="text-primary">Transform?</span>
+              Ready To <span className="text-primary">Unlock Your Potential?</span>
             </h3>
             <p className="text-secondary-foreground/50 text-sm font-body mt-2 max-w-md">
-              Start your journey today and discover what you're truly capable of.
+              Start your holistic health, fitness, and wellness journey with Marc T. Bahoury and the organic IDEA® family today.
             </p>
           </div>
           <Link
             to="/contact"
             className="btn-primary text-xs shrink-0 group"
           >
-            Get Started <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            Start Your Journey <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
         </div>
       </div>
@@ -72,18 +66,20 @@ const Footer = () => {
             <Link to="/" className="inline-block">
               <img
                 src={logo}
-                alt="Idea Wellness"
+                alt="Idea Wellness Logo"
                 className="h-8 w-auto invert"
               />
             </Link>
             <p className="text-secondary-foreground/40 text-sm leading-relaxed font-body">
-              Where strength meets luxury. Premium fitness experiences designed for champions.
+              Est. 2014 by Marc T. Bahoury. Cairo's premier indoor & outdoor fitness destination combining physical strength, emotional well-being, and community support.
             </p>
             <div className="flex gap-3">
               {socialLinks.map(({ icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="w-10 h-10 rounded-full border border-secondary-foreground/10 flex items-center justify-center text-secondary-foreground/40 transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_20px_hsl(var(--glow-primary))] hover:-translate-y-1"
                 >
@@ -117,25 +113,25 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h4 className="font-display text-xs uppercase tracking-[0.2em] mb-6 text-primary">
-              Contact
+              Contact Us
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-4 font-body">
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-primary mt-0.5 shrink-0" />
-                <a href="mailto:info@ideawellness.com" className="text-sm text-secondary-foreground/40 hover:text-primary transition-colors font-body">
-                  info@ideawellness.com
+                <a href="mailto:marcbahoury@idea-egy.com" className="text-sm text-secondary-foreground/40 hover:text-primary transition-colors">
+                  marcbahoury@idea-egy.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={16} className="text-primary mt-0.5 shrink-0" />
-                <a href="tel:+15551234567" className="text-sm text-secondary-foreground/40 hover:text-primary transition-colors font-body">
-                  +1 (555) 123-4567
+                <a href="tel:+201229560999" className="text-sm text-secondary-foreground/40 hover:text-primary transition-colors">
+                  +20 1229560999
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-secondary-foreground/40 font-body">
-                  123 Fitness Avenue, Downtown
+                <span className="text-sm text-secondary-foreground/40 leading-relaxed">
+                  Sheraton Heliopolis | New Cairo | North Coast (Stella & Sidi Heneish)
                 </span>
               </li>
             </ul>
@@ -146,15 +142,15 @@ const Footer = () => {
         <div className="h-px bg-gradient-to-r from-transparent via-secondary-foreground/15 to-transparent mb-6" />
 
         {/* Copyright */}
-        <p className="text-center text-xs text-secondary-foreground/25 font-body">
-          © {new Date().getFullYear()} Idea Wellness. All rights reserved.
+        <p className="text-center text-xs text-secondary-foreground/25">
+          © {new Date().getFullYear()} IDEA® Wellness. All rights reserved.
         </p>
       </div>
 
       {/* Full-width watermark */}
       <div className="w-full overflow-hidden pb-2">
         <h2 className="font-display text-[10.5vw] md:text-[11vw] leading-[0.85] uppercase text-secondary-foreground/[0.03] whitespace-nowrap select-none tracking-[-0.02em] md:tracking-tighter text-center">
-          IDEA WELLNESS
+          IDEA® WELLNESS
         </h2>
       </div>
     </footer>

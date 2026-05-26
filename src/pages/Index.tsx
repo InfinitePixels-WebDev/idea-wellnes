@@ -6,28 +6,81 @@ import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ParallaxSection from "@/components/ParallaxSection";
 import TextReveal from "@/components/TextReveal";
-import heroBg from "@/assets/hero-bg.jpg";
-import trainer1 from "@/assets/trainer-1.jpg";
-import trainer2 from "@/assets/trainer-2.jpg";
-import trainer3 from "@/assets/trainer-3.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
 
 const testimonials = [
-  { name: "Sarah Mitchell", text: "Idea Wellness completely transformed my approach to fitness. The trainers are world-class and the facility is unmatched.", rating: 5 },
-  { name: "James Rodriguez", text: "Best gym I've ever been to. The energy, the community, the results — everything is premium.", rating: 5 },
-  { name: "Emily Chen", text: "Lost 30 pounds in 6 months. The personalized attention you get here is incredible.", rating: 5 },
+  { 
+    name: "Nayrine", 
+    text: "The Ladies only Class HAS the GREATEST VIBES WITH THE BEST COACH 🙌🏽. It’s Always private either inside the Gym or outside with closed / observed Doors. Usually a 1 Month Class and the results really SHOW by the end of each Round 👍🏽👏🏽. Highly Recommend 🌟🌟", 
+    rating: 5 
+  },
+  { 
+    name: "Emy Abdo", 
+    text: "Great gym with amazing coaches who truly care, guide and motivate you. The atmosphere is always positive and the place is always clean. A happy place that keeps you moving forward.🤍🌟", 
+    rating: 5 
+  },
+  { 
+    name: "Michael Aswad", 
+    text: "A great gym for crossfit and the owner is sociable and friendly. Classes are amazing and you should definitely join if you are seeking a fit healthy lifestyle. Outdoors space is also available for your workouts", 
+    rating: 5 
+  },
+  { 
+    name: "Augusto Poersch", 
+    text: "Best gym in Cairo!", 
+    rating: 5 
+  },
+  { 
+    name: "Isis Farid", 
+    text: "Nice people. Excellent coaches. Friendly atmosphere. High quality of equipment and great motivation.", 
+    rating: 5 
+  },
+  { 
+    name: "Marina Abdelmessih", 
+    text: "Amazing vibes! The coaches are extremely supportive, highly educated, and they motivate you in every class.", 
+    rating: 5 
+  },
+  { 
+    name: "Ahmed Kamel", 
+    text: "Best outdoor fitness and sport Venue in Heliopolis. Excellent equipment and Marc is a top coach.", 
+    rating: 5 
+  },
+  { 
+    name: "Marc Latif", 
+    text: "Great coach, great atmosphere, great training sessions. I've seen massive improvements in my stamina.", 
+    rating: 5 
+  },
+  { 
+    name: "مصطفي أبوزيد", 
+    text: "I loved it great place. Clean environment, helpful trainers, and extremely engaging community.", 
+    rating: 5 
+  },
+  { 
+    name: "Ahmad Wadoud", 
+    text: "تمثال رمسيس المذكور في كتاب الله خلد ويقول للمغادر في ذوق ووجهه له وداعا عد تاثيتا في القريب العاجل لقد شربت من نهر الجنة وسوف تعود ثانيتا لارض نهر الجنة وعلى فكره يا خواجه ده مش الاصلي ده تحفة هاي كوبي من الاصلي نحته فنان مصري حديث عشان بس تصدقوا ان احنا الفراعنة جينات يا عصومه", 
+    rating: 5 
+  }
 ];
 
 const facilities = [
-  { title: "Weight Room", desc: "10,000 sq ft of premium iron", img: gallery6 },
-  { title: "Recovery Spa", desc: "Cryotherapy & infrared saunas", img: gallery4 },
-  { title: "Boxing Ring", desc: "Full-size competition ring", img: gallery2 },
-  { title: "Cardio Zone", desc: "State-of-the-art equipment", img: gallery3 },
+  { 
+    title: "CrossFit & HIIT", 
+    desc: "Sheraton Heliopolis & New Cairo premier indoor/outdoor rigs.", 
+    img: "/converted_jpg/IMG_0632.jpg" 
+  },
+  { 
+    title: "Pilates & Core Training", 
+    desc: "Personalized core detailing and bodyweight gymnastics alignment.", 
+    img: "/converted_jpg/IMG_0635.jpg" 
+  },
+  { 
+    title: "Boxing & Kickboxing", 
+    desc: "High-energy training sessions to build peak aerobic conditioning.", 
+    img: "/converted_jpg/IMG_0643.jpg" 
+  },
+  { 
+    title: "Nutrition & Lifestyle", 
+    desc: "Customized meal plans, calorie recipes, and food preparation tips.", 
+    img: "/converted_jpg/IMG_0653.jpg" 
+  },
 ];
 
 const Index = () => {
@@ -53,18 +106,18 @@ const Index = () => {
       {/* Hero — fullscreen parallax */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
-          <img src={heroBg} alt="Idea Wellness gym" className="w-full h-full object-cover" />
+          <img src="/converted_jpg/IMG_3920.jpg" alt="IDEA® Wellness Indoor and Outdoor Gym Cairo" loading="lazy" className="w-full h-full object-cover" />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/45 to-background" />
         
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-left w-full px-6 md:px-12 lg:px-20 pt-20">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-left w-full px-6 md:px-12 lg:px-20 pt-28 pb-16 md:pt-20 md:pb-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <p className="text-primary text-sm uppercase tracking-[0.4em] font-semibold mb-6 font-body">
-              Premium Fitness Experience
+              PREMIUM FITNESS & HOLISTIC WELLNESS
             </p>
           </motion.div>
           <motion.h1
@@ -73,17 +126,17 @@ const Index = () => {
             transition={{ delay: 0.4, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="display-xl mb-8 text-foreground"
           >
-            Forge Your
+            UNLOCK YOUR
             <br />
-            <span className="text-gradient">Strongest Self</span>
+            <span className="text-gradient">INNER ATHLETE</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 font-body"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 font-body leading-relaxed"
           >
-            Where elite training meets luxury wellness. Push beyond limits in a facility built for champions.
+            Cairo's leading indoor and outdoor training destination. Founded by pharmacist Marc T. Bahoury, we combine high-energy group workouts with customized nutrition planning.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -92,10 +145,10 @@ const Index = () => {
             className="flex flex-col sm:flex-row gap-4 justify-start"
           >
             <Link to="/contact" className="btn-primary text-sm">
-              Start Your Journey <ArrowRight className="ml-2 h-4 w-4" />
+              Book A Session <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
-            <Link to="/about" className="btn-outline text-sm">
-              Discover More
+            <Link to="/gallery" className="btn-outline text-sm">
+              Explore The Arena
             </Link>
           </motion.div>
         </motion.div>
@@ -124,7 +177,7 @@ const Index = () => {
         <motion.div style={{ x: marqueeX }} className="flex whitespace-nowrap gap-8">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="font-display text-2xl md:text-4xl uppercase text-primary-foreground/90 flex items-center gap-8">
-              Strength <span className="text-primary-foreground/40">✦</span> Discipline <span className="text-primary-foreground/40">✦</span> Community <span className="text-primary-foreground/40">✦</span> Excellence
+              CrossFit <span className="text-primary-foreground/40">✦</span> Pilates <span className="text-primary-foreground/40">✦</span> Bodybuilding <span className="text-primary-foreground/40">✦</span> Nutrition <span className="text-primary-foreground/40">✦</span> Kids Fit <span className="text-primary-foreground/40">✦</span> Community
             </span>
           ))}
         </motion.div>
@@ -136,14 +189,14 @@ const Index = () => {
           <ScrollReveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { end: 5000, suffix: "+", label: "Active Members" },
-                { end: 50, suffix: "+", label: "Expert Trainers" },
-                { end: 12, suffix: "", label: "Locations" },
-                { end: 15, suffix: "+", label: "Years Strong" },
+                { end: 600, suffix: "+", label: "Organic Family Members" },
+                { end: 15, suffix: "+", label: "Designed Class Types" },
+                { end: 18, suffix: "", label: "Expert Passionate Trainers" },
+                { end: 11, suffix: "+", label: "Years Strong Brand" },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 40, rotate: -2 }}
+                  initial={{ opacity: 0, y: 40, rotate: -1.5 }}
                   whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
@@ -160,23 +213,23 @@ const Index = () => {
       </section>
 
       {/* Philosophy — text reveal + parallax image */}
-      <ParallaxSection imgSrc={gallery1} imgAlt="Gym atmosphere" className="min-h-[60vh] md:min-h-[70vh] flex items-center" speed={0.4}>
-        <div className="section-padding">
+      <ParallaxSection imgSrc="/converted_jpg/IMG_0631.jpg" imgAlt="IDEA® Wellness Heliopolis Gym Floor" className="min-h-[60vh] md:min-h-[70vh] flex items-center" speed={0.4}>
+        <div className="section-padding w-full">
           <div className="max-w-4xl mx-auto text-center">
             <TextReveal
-              text="We don't just build bodies. We forge discipline, resilience, and unshakeable confidence. Every session is a step toward the strongest version of yourself."
+              text="Combining health, performance, and enjoyment. We empower you to adopt sustainable lifestyle choices, enhancing your energy levels and reducing overall health risks."
               className="text-2xl md:text-4xl lg:text-5xl font-display uppercase leading-tight text-foreground"
             />
           </div>
         </div>
       </ParallaxSection>
 
-      {/* Facilities — staggered asymmetric grid */}
+      {/* Programs — staggered asymmetric grid */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">World-Class</p>
-            <h2 className="display-lg mb-16 text-foreground">Our<br /><span className="text-gradient">Facilities</span></h2>
+            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">CORE SPECIALTIES</p>
+            <h2 className="display-lg mb-16 text-foreground">Premium Classes &<br /><span className="text-gradient">Lifestyle Support</span></h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
             {facilities.map((f, i) => {
@@ -188,22 +241,18 @@ const Index = () => {
                     <motion.img
                       src={f.img}
                       alt={f.title}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
                       whileHover={{ scale: 1.05 }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                       <motion.div
-                        initial={false}
-                        className="transform transition-transform duration-500 group-hover:-translate-y-2"
+                        className="transform transition-transform duration-500"
                       >
                         <h3 className="font-display text-xl md:text-2xl uppercase text-foreground mb-1">{f.title}</h3>
-                        <p className="text-sm text-muted-foreground font-body opacity-0 group-hover:opacity-100 transition-opacity duration-500">{f.desc}</p>
                       </motion.div>
                     </div>
-                    {/* Corner accent */}
-                    <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-primary/0 group-hover:border-primary transition-all duration-500 rounded-tr-lg" />
-                    <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-primary/0 group-hover:border-primary transition-all duration-500 rounded-bl-lg" />
                   </div>
                 </ScrollReveal>
               );
@@ -212,35 +261,36 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Trainers — horizontal cards with parallax */}
+      {/* Program pillars on home page leadership placeholder */}
       <section className="section-padding bg-card">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Expert Team</p>
-            <h2 className="display-lg mb-16 text-foreground">Meet Your<br /><span className="text-gradient">Coaches</span></h2>
+            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">COACHING LEADERSHIP</p>
+            <h2 className="display-lg mb-16 text-foreground">Meet Head Coach &<br /><span className="text-gradient">The IDEA® System</span></h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { img: trainer1, name: "Marcus Blake", role: "Head Strength Coach" },
-              { img: trainer2, name: "Elena Vasquez", role: "HIIT Specialist" },
-              { img: trainer3, name: "Daniel Kim", role: "CrossFit Pro" },
-            ].map((trainer, i) => (
-              <ScrollReveal key={trainer.name} delay={i * 0.15}>
+              { img: "/converted_jpg/IMG_0641.jpg", name: "Marc Bahoury", role: "Founder & Head Coach (CrossFit L1/L2, ISSA)" },
+              { img: "/converted_jpg/IMG_0659.jpg", name: "18+ Expert Coaches", role: "Passionate & Highly Educated Trainers" },
+              { img: "/converted_jpg/IMG_0633.jpg", name: "Tailored Classes", desc: "Max 30 Trainees per class for full guidance", role: "Indoor & Outdoor Group Training" },
+            ].map((item, i) => (
+              <ScrollReveal key={item.name} delay={i * 0.15}>
                 <div className="group relative">
                   <div className="relative overflow-hidden rounded-2xl aspect-[3/4]">
                     <img
-                      src={trainer.img}
-                      alt={trainer.name}
+                      src={item.img}
+                      alt={item.name}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-[1s] group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-85" />
                     
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
                     
-                    <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                      <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-1 font-body">{trainer.role}</p>
-                      <h3 className="font-display text-xl md:text-2xl uppercase text-foreground">{trainer.name}</h3>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 z-10 font-body">
+                      <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-1 font-body">{item.role}</p>
+                      <h3 className="font-display text-xl md:text-2xl uppercase text-foreground">{item.name}</h3>
                     </div>
                   </div>
                   {/* Floating number */}
@@ -252,24 +302,24 @@ const Index = () => {
             ))}
           </div>
           <ScrollReveal className="text-center mt-12">
-            <Link to="/trainers" className="btn-outline text-sm group">
-              View All Trainers <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <Link to="/about" className="btn-outline text-sm group">
+              Read Our Full Story <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </ScrollReveal>
         </div>
       </section>
 
       {/* Parallax image break */}
-      <ParallaxSection imgSrc={gallery5} imgAlt="Training session" className="h-[40vh] md:h-[50vh]" speed={0.5} overlay={false}>
-        <div className="absolute inset-0 bg-background/30" />
+      <ParallaxSection imgSrc="/converted_jpg/IMG_0639.jpg" imgAlt="IDEA® Wellness North Coast Beach Activation" className="h-[40vh] md:h-[50vh]" speed={0.5} overlay={false}>
+        <div className="absolute inset-0 bg-background/25" />
       </ParallaxSection>
 
       {/* Testimonials */}
       <section className="section-padding">
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Testimonials</p>
-            <h2 className="display-lg mb-16 text-foreground">What Members<br /><span className="text-gradient">Say</span></h2>
+            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">REAL MEMBER REVIEWS</p>
+            <h2 className="display-lg mb-16 text-foreground">Supported By An<br /><span className="text-gradient">Active Community</span></h2>
           </ScrollReveal>
           <ScrollReveal>
             <div className="relative">
@@ -289,7 +339,7 @@ const Index = () => {
                       <Star key={i} className="h-5 w-5 text-primary fill-primary" />
                     ))}
                   </div>
-                  <p className="text-xl md:text-3xl text-foreground leading-relaxed mb-8 font-body italic">
+                  <p className="text-lg md:text-2xl text-foreground leading-relaxed mb-8 font-body italic max-w-3xl mx-auto px-4">
                     "{testimonials[testimonialIdx].text}"
                   </p>
                   <div className="w-12 h-0.5 bg-primary mx-auto mb-4" />
@@ -330,25 +380,26 @@ const Index = () => {
       </section>
 
       {/* Gallery mosaic */}
-      <section className="section-padding bg-card">
+      <section className="section-padding bg-card font-body">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Our Space</p>
-            <h2 className="display-lg mb-16 text-foreground">Inside<br /><span className="text-gradient">The Arena</span></h2>
+            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">OUR SPACE</p>
+            <h2 className="display-lg mb-16 text-foreground">Explore The<br /><span className="text-gradient">IDEA® Training Arena</span></h2>
           </ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { img: gallery1, span: "col-span-2 row-span-2" },
-              { img: gallery2, span: "" },
-              { img: gallery3, span: "" },
-              { img: gallery5, span: "" },
-              { img: gallery4, span: "" },
+              { img: "/converted_jpg/IMG_0631.jpg", span: "col-span-2 row-span-2" },
+              { img: "/converted_jpg/IMG_0636.jpg", span: "" },
+              { img: "/converted_jpg/IMG_0637.jpg", span: "" },
+              { img: "/converted_jpg/IMG_0647.jpg", span: "" },
+              { img: "/converted_jpg/IMG_0661.jpg", span: "" },
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.08} className={item.span}>
                 <div className="relative overflow-hidden rounded-xl group cursor-pointer aspect-square h-full">
                   <img
                     src={item.img}
-                    alt={`Gym ${i + 1}`}
+                    alt={`IDEA Wellness Arena ${i + 1}`}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-[1s] group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
@@ -358,7 +409,7 @@ const Index = () => {
           </div>
           <ScrollReveal className="text-center mt-12">
             <Link to="/gallery" className="btn-outline text-sm group">
-              View Full Gallery <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              Explore Gallery <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </ScrollReveal>
         </div>
