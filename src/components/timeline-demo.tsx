@@ -15,7 +15,7 @@ export default function TimelineDemo() {
               "Introduced holistic personal training tailored to individual client needs.",
             ]}
             showBullets
-            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
+            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display leading-tight"
           />
         </div>
       ),
@@ -32,7 +32,7 @@ export default function TimelineDemo() {
               "Limited class sizes to a maximum of 30 trainees to guarantee personalized training guidance.",
             ]}
             showBullets
-            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
+            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display leading-tight"
           />
         </div>
       ),
@@ -43,13 +43,13 @@ export default function TimelineDemo() {
         <div>
           <TimelineWordReveal
             lines={[
-              "Expanded presence to premium indoor and outdoor fitness destinations in New Cairo and North Coast (Stella & Sidi Heneish).",
+              "Expanded presence to premium indoor and outdoor fitness destinations in New Cairo and North Coast (Ramla North Coast).",
               "Launched specialized Corporate Wellness programs for multinationals, including stress management workshops and travel retreats.",
               "Introduced 24/7 client accessibility and full-spectrum nutritional lifestyle support, including meal planning, customized prep tips, and recipes.",
               "Pioneered high-energy Summer Beach Competitions in North Coast, transforming member expectations into measurable results.",
             ]}
             showBullets
-            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight"
+            className="mb-8 text-xl md:text-2xl lg:text-3xl font-display leading-tight"
           />
         </div>
       ),

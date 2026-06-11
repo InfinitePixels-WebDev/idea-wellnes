@@ -42,7 +42,7 @@ const Footer = () => {
       <div className="border-b border-secondary-foreground/10">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <h3 className="font-display text-2xl md:text-4xl uppercase text-secondary-foreground leading-tight">
+            <h3 className="font-display text-2xl md:text-4xl text-secondary-foreground leading-tight">
               Ready To <span className="text-primary">Unlock Your Potential?</span>
             </h3>
             <p className="text-secondary-foreground/50 text-sm font-body mt-2 max-w-md">
@@ -67,7 +67,7 @@ const Footer = () => {
               <img
                 src={logo}
                 alt="Idea Wellness Logo"
-                className="h-8 w-auto invert"
+                className="h-8 w-auto invert shrink-0 object-contain"
               />
             </Link>
             <p className="text-secondary-foreground/40 text-sm leading-relaxed font-body">
@@ -92,7 +92,7 @@ const Footer = () => {
           {/* Link columns */}
           {footerLinks.map((section) => (
             <div key={section.title}>
-              <h4 className="font-display text-xs uppercase tracking-[0.2em] mb-6 text-primary">
+              <h4 className="font-display text-xs tracking-[0.1em] mb-6 text-primary">
                 {section.title}
               </h4>
               <ul className="space-y-3">
@@ -112,7 +112,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display text-xs uppercase tracking-[0.2em] mb-6 text-primary">
+            <h4 className="font-display text-xs tracking-[0.1em] mb-6 text-primary">
               Contact Us
             </h4>
             <ul className="space-y-4 font-body">
@@ -131,7 +131,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-primary mt-0.5 shrink-0" />
                 <span className="text-sm text-secondary-foreground/40 leading-relaxed">
-                  Sheraton Heliopolis | New Cairo | North Coast (Stella & Sidi Heneish)
+                  Sheraton Heliopolis | New Cairo | North Coast (Ramla North Coast)
                 </span>
               </li>
             </ul>
@@ -150,7 +150,7 @@ const Footer = () => {
       {/* Full-width watermark */}
       <div className="w-full overflow-hidden pb-2">
         <h2 className="font-display text-[10.5vw] md:text-[11vw] leading-[0.85] uppercase text-secondary-foreground/[0.03] whitespace-nowrap select-none tracking-[-0.02em] md:tracking-tighter text-center">
-          IDEA® WELLNESS
+          IDEA WELLNESS
         </h2>
       </div>
     </footer>

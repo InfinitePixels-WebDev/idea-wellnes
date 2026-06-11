@@ -139,25 +139,25 @@
 
   .display-xl {
     font-family: var(--font-display);
-    @apply text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.9] tracking-tight;
+    @apply text-5xl md:text-7xl lg:text-8xl leading-[0.9] tracking-tight;
   }
 
   .display-lg {
     font-family: var(--font-display);
-    @apply text-3xl md:text-5xl lg:text-6xl uppercase leading-[0.95] tracking-tight;
+    @apply text-3xl md:text-5xl lg:text-6xl leading-[0.95] tracking-tight;
   }
 
   .display-md {
     font-family: var(--font-display);
-    @apply text-2xl md:text-3xl lg:text-4xl uppercase leading-tight;
+    @apply text-2xl md:text-3xl lg:text-4xl leading-tight;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--glow-primary))] hover:scale-105 active:scale-95;
+    @apply inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold tracking-wider text-sm rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--glow-primary))] hover:scale-105 active:scale-95;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-foreground/20 text-foreground font-semibold uppercase tracking-wider text-sm rounded-lg transition-all duration-300 hover:border-primary hover:text-primary hover:scale-105 active:scale-95;
+    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-foreground/20 text-foreground font-semibold tracking-wider text-sm rounded-lg transition-all duration-300 hover:border-primary hover:text-primary hover:scale-105 active:scale-95;
   }
 
   .stat-glow {

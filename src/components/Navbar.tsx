@@ -45,18 +45,18 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="relative z-50 group">
+          <Link to="/" className="relative z-50 group order-2 lg:order-1">
             <img
               src={logo}
               alt="Idea Wellness"
-              className={`h-8 md:h-9 w-auto transition-opacity duration-300 group-hover:opacity-70 ${
+              className={`h-8 md:h-9 w-auto shrink-0 object-contain transition-opacity duration-300 group-hover:opacity-70 ${
                 topNav ? "invert" : "dark:invert"
               }`}
             />
           </Link>
 
           {/* Desktop */}
-          <div className="hidden lg:flex items-center gap-10">
+          <div className="hidden lg:flex lg:order-2 items-center gap-10">
             <div className="flex items-center gap-8">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.to;
@@ -64,7 +64,7 @@ const Navbar = () => {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="group relative text-[11px] uppercase tracking-[0.25em] font-medium py-2"
+                    className="group relative text-[11px] tracking-[0.1em] font-medium py-2"
                   >
                     <span
                       className={`transition-colors duration-300 ${
@@ -105,7 +105,7 @@ const Navbar = () => {
               <ThemeToggle className={topNav ? "text-white/80 hover:text-white" : undefined} />
               <Link
                 to="/contact"
-                className={`text-[11px] uppercase tracking-[0.25em] font-medium transition-colors duration-300 ${
+                className={`text-[11px] tracking-[0.15em] font-medium transition-colors duration-300 ${
                   topNav ? "text-white hover:text-primary" : "text-foreground hover:text-primary"
                 }`}
               >
@@ -115,7 +115,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile toggle — animated hamburger */}
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="flex lg:hidden order-1 lg:order-3 items-center gap-3">
             <ThemeToggle className={topNav && !open ? "text-white/80 hover:text-white" : undefined} />
             <button
               onClick={toggleMenu}
@@ -123,21 +123,21 @@ const Navbar = () => {
               aria-label="Toggle menu"
             >
               <motion.span
-                animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                animate={open ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className={`block w-6 h-[1.5px] origin-center ${
                   topNav && !open ? "bg-white" : "bg-foreground"
                 }`}
               />
               <motion.span
-                animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                animate={open ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}
                 className={`block w-6 h-[1.5px] origin-center ${
                   topNav && !open ? "bg-white" : "bg-foreground"
                 }`}
               />
               <motion.span
-                animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                animate={open ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className={`block w-6 h-[1.5px] origin-center ${
                   topNav && !open ? "bg-white" : "bg-foreground"
@@ -169,7 +169,7 @@ const Navbar = () => {
                 <Link
                   to={link.to}
                   onClick={() => setOpen(false)}
-                  className={`font-display text-3xl uppercase tracking-wider transition-colors duration-300 hover:text-primary block py-2 ${
+                  className={`font-display text-3xl tracking-wide transition-colors duration-300 hover:text-primary block py-2 ${
                     location.pathname === link.to ? "text-primary" : "text-foreground"
                   }`}
                 >

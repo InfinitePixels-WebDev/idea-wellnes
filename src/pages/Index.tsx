@@ -94,12 +94,7 @@ const Index = () => {
   const heroScale = useTransform(heroScroll, [0, 1], [1, 1.15]);
   const heroOpacity = useTransform(heroScroll, [0, 0.8], [1, 0]);
 
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: marqueeScroll } = useScroll({
-    target: marqueeRef,
-    offset: ["start end", "end start"],
-  });
-  const marqueeX = useTransform(marqueeScroll, [0, 1], ["0%", "-50%"]);
+
 
   return (
     <div className="overflow-hidden">
@@ -116,8 +111,8 @@ const Index = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <p className="text-primary text-sm uppercase tracking-[0.4em] font-semibold mb-6 font-body">
-              PREMIUM FITNESS & HOLISTIC WELLNESS
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-6 font-body">
+              Premium Fitness & Holistic Wellness
             </p>
           </motion.div>
           <motion.h1
@@ -126,9 +121,9 @@ const Index = () => {
             transition={{ delay: 0.4, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="display-xl mb-8 text-foreground"
           >
-            UNLOCK YOUR
+            Unlock Your
             <br />
-            <span className="text-gradient">INNER ATHLETE</span>
+            <span className="text-gradient">Inner Athlete</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -160,7 +155,7 @@ const Index = () => {
           transition={{ delay: 1.2, duration: 0.8 }}
           className="hidden md:flex absolute bottom-10 right-8 z-10 flex-col items-center gap-4"
         >
-          <span className="text-[10px] uppercase tracking-[0.4em] text-foreground/60 font-semibold [writing-mode:vertical-rl] rotate-180">
+          <span className="text-[10px] tracking-[0.2em] text-foreground/60 font-semibold [writing-mode:vertical-rl] rotate-180">
             Scroll Down
           </span>
           <motion.div
@@ -173,10 +168,18 @@ const Index = () => {
       </section>
 
       {/* Marquee text band */}
-      <div ref={marqueeRef} className="py-8 md:py-12 bg-primary overflow-hidden">
-        <motion.div style={{ x: marqueeX }} className="flex whitespace-nowrap gap-8">
+      <div className="py-8 md:py-12 bg-primary overflow-hidden">
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: 20,
+          }}
+          className="flex whitespace-nowrap gap-8"
+        >
           {Array.from({ length: 8 }).map((_, i) => (
-            <span key={i} className="font-display text-2xl md:text-4xl uppercase text-primary-foreground/90 flex items-center gap-8">
+            <span key={i} className="font-display text-2xl md:text-4xl text-primary-foreground/90 flex items-center gap-8">
               CrossFit <span className="text-primary-foreground/40">✦</span> Pilates <span className="text-primary-foreground/40">✦</span> Bodybuilding <span className="text-primary-foreground/40">✦</span> Nutrition <span className="text-primary-foreground/40">✦</span> Kids Fit <span className="text-primary-foreground/40">✦</span> Community
             </span>
           ))}
@@ -218,7 +221,7 @@ const Index = () => {
           <div className="max-w-4xl mx-auto text-center">
             <TextReveal
               text="Combining health, performance, and enjoyment. We empower you to adopt sustainable lifestyle choices, enhancing your energy levels and reducing overall health risks."
-              className="text-2xl md:text-4xl lg:text-5xl font-display uppercase leading-tight text-foreground"
+              className="text-2xl md:text-4xl lg:text-5xl font-display leading-tight text-foreground"
             />
           </div>
         </div>
@@ -228,7 +231,7 @@ const Index = () => {
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">CORE SPECIALTIES</p>
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Core Specialties</p>
             <h2 className="display-lg mb-16 text-foreground">Premium Classes &<br /><span className="text-gradient">Lifestyle Support</span></h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
@@ -250,7 +253,7 @@ const Index = () => {
                       <motion.div
                         className="transform transition-transform duration-500"
                       >
-                        <h3 className="font-display text-xl md:text-2xl uppercase text-foreground mb-1">{f.title}</h3>
+                        <h3 className="font-display text-xl md:text-2xl text-foreground mb-1">{f.title}</h3>
                       </motion.div>
                     </div>
                   </div>
@@ -265,7 +268,7 @@ const Index = () => {
       <section className="section-padding bg-card">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">COACHING LEADERSHIP</p>
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Coaching Leadership</p>
             <h2 className="display-lg mb-16 text-foreground">Meet Head Coach &<br /><span className="text-gradient">The IDEA® System</span></h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -289,8 +292,8 @@ const Index = () => {
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
                     
                     <div className="absolute bottom-0 left-0 right-0 p-6 z-10 font-body">
-                      <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em] mb-1 font-body">{item.role}</p>
-                      <h3 className="font-display text-xl md:text-2xl uppercase text-foreground">{item.name}</h3>
+                      <p className="text-primary text-xs font-semibold tracking-[0.1em] mb-1 font-body">{item.role}</p>
+                      <h3 className="font-display text-xl md:text-2xl text-foreground">{item.name}</h3>
                     </div>
                   </div>
                   {/* Floating number */}
@@ -318,7 +321,7 @@ const Index = () => {
       <section className="section-padding">
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">REAL MEMBER REVIEWS</p>
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Real Member Reviews</p>
             <h2 className="display-lg mb-16 text-foreground">Supported By An<br /><span className="text-gradient">Active Community</span></h2>
           </ScrollReveal>
           <ScrollReveal>
@@ -343,7 +346,7 @@ const Index = () => {
                     "{testimonials[testimonialIdx].text}"
                   </p>
                   <div className="w-12 h-0.5 bg-primary mx-auto mb-4" />
-                  <p className="text-primary font-semibold uppercase tracking-wider text-sm font-body">
+                  <p className="text-primary font-semibold tracking-wider text-sm font-body">
                     {testimonials[testimonialIdx].name}
                   </p>
                 </div>
@@ -383,7 +386,7 @@ const Index = () => {
       <section className="section-padding bg-card font-body">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">OUR SPACE</p>
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Our Space</p>
             <h2 className="display-lg mb-16 text-foreground">Explore The<br /><span className="text-gradient">IDEA® Training Arena</span></h2>
           </ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

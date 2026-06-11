@@ -66,7 +66,7 @@ const Trainers = () => {
           <motion.p
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body"
+            className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body"
           >
             Our Trainers
           </motion.p>
@@ -94,7 +94,7 @@ const Trainers = () => {
         <div className="max-w-4xl mx-auto">
           <TextReveal
             text="Our coaches don't just train your body. They rewire your mindset, refine your technique, and push you beyond what you thought possible."
-            className="text-xl md:text-3xl lg:text-4xl font-display uppercase leading-tight text-foreground"
+            className="text-xl md:text-3xl lg:text-4xl font-display leading-tight text-foreground"
           />
         </div>
       </section>
@@ -137,8 +137,8 @@ const Trainers = () => {
 
                   {/* Content side */}
                   <div className="w-full md:w-3/5">
-                    <p className="text-primary text-sm font-semibold uppercase tracking-[0.2em] mb-2 font-body">{t.role}</p>
-                    <h2 className="font-display text-3xl md:text-4xl uppercase mb-4 text-foreground">{t.name}</h2>
+                    <p className="text-primary text-sm font-semibold tracking-[0.1em] mb-2 font-body">{t.role}</p>
+                    <h2 className="font-display text-3xl md:text-4xl mb-4 text-foreground">{t.name}</h2>
                     <div className="w-12 h-0.5 bg-primary mb-6" />
                     <p className="text-muted-foreground leading-relaxed mb-6 font-body text-lg">{t.bio}</p>
                     <div className="flex flex-wrap gap-2 mb-8">

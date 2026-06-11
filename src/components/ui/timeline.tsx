@@ -114,7 +114,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     <div className="w-full md:px-10" ref={containerRef}>
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
         <h2 className="display-lg mb-4 text-foreground max-w-4xl">
-          Idea Wellness journey
+          Idea Wellness Journey
         </h2>
         <p className="text-muted-foreground text-sm md:text-base max-w-sm font-body leading-relaxed">
           From one club to a nationwide performance community, this timeline
@@ -132,7 +132,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             >
               <TimelineWordReveal
                 text={item.title}
-                className="text-2xl md:text-5xl mb-4 font-display uppercase leading-tight"
+                className="text-2xl md:text-5xl mb-4 font-display leading-tight"
               />
               {item.content}
             </div>

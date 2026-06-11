@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import logo from "@/assets/idea-wellness-logo.png";
 
 const loadingTexts = [
-  "IGNITING DISCIPLINE",
-  "FORGING STRENGTH",
-  "BUILDING COMMUNITY",
-  "ELEVATING WELLNESS"
+  "Igniting Discipline",
+  "Forging Strength",
+  "Building Community",
+  "Elevating Wellness"
 ];
 
 export const Loader = () => {
@@ -79,7 +79,7 @@ export const Loader = () => {
             animate={{ y: 0, opacity: 0.9 }}
             exit={{ y: -20, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="text-[10px] uppercase tracking-[0.4em] text-primary font-semibold font-body"
+            className="text-[10px] tracking-[0.25em] text-primary font-semibold font-body"
           >
             {loadingTexts[textIndex]}
           </motion.p>

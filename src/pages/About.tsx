@@ -56,17 +56,17 @@ const About = () => {
           <motion.p
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body"
+            className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body"
           >
-            WHO WE ARE
+            Who We Are
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display uppercase leading-[0.95] tracking-tight text-foreground"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display leading-[0.95] tracking-tight text-foreground"
           >
-            ESTABLISHED IN 2014<br /><span className="text-gradient">BY MARC T. BAHOURY</span>
+            Established in 2014<br /><span className="text-gradient">by Marc T. Bahoury</span>
           </motion.h1>
         </div>
       </section>
@@ -76,7 +76,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <TextReveal
             text="IDEA® Wellness is a premier wellness brand delivering integrated health and fitness solutions. Combining physical fitness and emotional wellness, our full-spectrum philosophy empowers clients to look, feel, and perform at their absolute best."
-            className="text-2xl md:text-3xl lg:text-4xl font-display uppercase leading-tight text-foreground"
+            className="text-2xl md:text-3xl lg:text-4xl font-display leading-tight text-foreground"
           />
         </div>
       </section>
@@ -85,7 +85,7 @@ const About = () => {
       <section className="section-padding py-12">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Our Journey</p>
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Our Journey</p>
             <h2 className="display-lg mb-16 text-foreground">The Milestones Of<br /><span className="text-gradient">IDEA® Wellness</span></h2>
           </ScrollReveal>
         </div>
@@ -101,7 +101,7 @@ const About = () => {
       <section ref={valuesRef} className="section-padding">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Why Choose Us</p>
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Why Choose Us</p>
             <h2 className="display-lg mb-16 text-foreground">The Foundation Of<br /><span className="text-gradient">Our Brand</span></h2>
           </ScrollReveal>
           <motion.div style={{ rotateX: valuesRotate }} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 perspective-[1200px]">
@@ -117,7 +117,7 @@ const About = () => {
                       <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--glow-primary))] transition-all duration-500">
                         <val.icon className="h-7 w-7 text-primary" />
                       </div>
-                      <h3 className="font-display text-xl uppercase text-card-foreground">{val.title}</h3>
+                      <h3 className="font-display text-xl text-card-foreground">{val.title}</h3>
                     </div>
                     <p className="text-muted-foreground leading-relaxed font-body text-sm md:text-base">{val.desc}</p>
                   </div>
@@ -144,7 +144,7 @@ const About = () => {
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Meet Our Founder</p>
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Meet Our Founder</p>
             <h2 className="display-lg mb-16 text-foreground">Founder &<br /><span className="text-gradient">Head Coach</span></h2>
           </ScrollReveal>
           
@@ -160,7 +160,7 @@ const About = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span className="text-xs uppercase tracking-widest text-primary font-semibold font-body">Marc T. Bahoury</span>
+                  <span className="text-xs tracking-wider text-primary font-semibold font-body">Marc T. Bahoury</span>
                   <p className="text-sm text-foreground mt-1 font-body">CrossFit L1, L2, CF Gymnastics & ISSA Certified Personal Trainer</p>
                 </div>
               </div>
@@ -169,8 +169,8 @@ const About = () => {
             {/* Founder Story */}
             <ScrollReveal className="lg:col-span-7" delay={0.2}>
               <div className="space-y-6">
-                <h3 className="font-display text-2xl md:text-3xl uppercase text-foreground">MARC BAHOURY</h3>
-                <p className="text-primary text-xs uppercase tracking-[0.25em] font-semibold font-body">THE JOURNEY FROM PHARMACY TO WELLNESS CHAMPION</p>
+                <h3 className="font-display text-2xl md:text-3xl text-foreground">Marc Bahoury</h3>
+                <p className="text-primary text-xs tracking-[0.15em] font-semibold font-body">The Journey From Pharmacy To Wellness Champion</p>
                 
                 <div className="space-y-4 text-muted-foreground font-body text-sm md:text-base leading-relaxed">
                   <p>
@@ -186,7 +186,7 @@ const About = () => {
 
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border/40 font-body">
                   <div>
-                    <h4 className="font-semibold text-foreground text-xs uppercase tracking-widest mb-2">Qualifications</h4>
+                    <h4 className="font-semibold text-foreground text-xs tracking-wider mb-2">Qualifications</h4>
                     <ul className="text-xs text-muted-foreground space-y-1">
                       <li>• CrossFit L1 & L2 Certified</li>
                       <li>• CrossFit Gymnastics Specialist</li>
@@ -195,7 +195,7 @@ const About = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground text-xs uppercase tracking-widest mb-2">Background</h4>
+                    <h4 className="font-semibold text-foreground text-xs tracking-wider mb-2">Background</h4>
                     <ul className="text-xs text-muted-foreground space-y-1">
                       <li>• B.Sc. Pharmacy (GUC)</li>
                       <li>• Former Pharmacist at Novartis</li>
@@ -213,7 +213,7 @@ const About = () => {
       <section className="section-padding bg-card">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
-            <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Core Methodology</p>
+            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Core Methodology</p>
             <h2 className="display-lg mb-16 text-foreground">Our Four Pillars Of<br /><span className="text-gradient">Member Success</span></h2>
           </ScrollReveal>
           <motion.div ref={teamRef} style={{ x: teamX }} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
@@ -229,7 +229,7 @@ const About = () => {
                     <img src={pillar.img} alt={pillar.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-[1s] group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-90" />
                     <div className="absolute bottom-4 left-4 right-4 z-10">
-                      <h3 className="font-display text-sm md:text-base uppercase text-foreground">{pillar.title}</h3>
+                      <h3 className="font-display text-sm md:text-base text-foreground">{pillar.title}</h3>
                       <p className="text-muted-foreground text-[10px] md:text-xs leading-relaxed font-body mt-1">{pillar.desc}</p>
                     </div>
                   </div>
@@ -245,8 +245,8 @@ const About = () => {
         <div className="section-padding w-full relative">
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <ScrollReveal>
-              <p className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body">Our Philosophy</p>
-              <h2 className="display-lg mb-8 text-foreground">STRENGTH & LIFE IS<br /><span className="text-gradient">INTEGRATED</span></h2>
+              <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Our Philosophy</p>
+              <h2 className="display-lg mb-8 text-foreground">Strength & Life is<br /><span className="text-gradient">Integrated</span></h2>
               <p className="text-lg text-muted-foreground leading-relaxed font-body max-w-2xl mx-auto">
                 We empower members to build sustainable habits. By increasing awareness of their body, fitness levels, and food choices, we provide the tools needed to adopt consistent lifestyle changes that decrease health risks.
               </p>

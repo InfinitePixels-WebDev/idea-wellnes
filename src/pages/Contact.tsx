@@ -29,7 +29,7 @@ const Contact = () => {
     { 
       icon: MapPin, 
       title: "Our Arenas", 
-      value: "Main Branch: Sheraton Al Matar, El Nozha, Cairo Governorate | Locations in New Cairo & North Coast (Stella & Sidi Heneish)" 
+      value: "Main Branch: Sheraton Al Matar, El Nozha, Cairo Governorate | Locations in New Cairo & North Coast (Ramla North Coast)" 
     },
     { 
       icon: Phone, 
@@ -60,9 +60,9 @@ const Contact = () => {
           <motion.p
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-primary text-sm uppercase tracking-[0.3em] font-semibold mb-4 font-body"
+            className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body"
           >
-            CONTACT IDEA® WELLNESS
+            Contact Idea® Wellness
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -70,7 +70,7 @@ const Contact = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="display-xl mb-4 text-foreground"
           >
-            START YOUR<br /><span className="text-gradient">TRANSFORMATION</span>
+            Start Your<br /><span className="text-gradient">Transformation</span>
           </motion.h1>
         </motion.div>
       </section>
@@ -80,7 +80,7 @@ const Contact = () => {
         <div className="max-w-3xl mx-auto">
           <TextReveal
             text="Have questions about our CrossFit programs, Pilates classes, corporate wellness, or nutrition support? We are ready to help you unlock the inner athlete."
-            className="text-xl md:text-2xl lg:text-3xl font-display uppercase leading-tight text-foreground"
+            className="text-xl md:text-2xl lg:text-3xl font-display leading-tight text-foreground"
           />
         </div>
       </section>
@@ -92,7 +92,7 @@ const Contact = () => {
           <ScrollReveal className="lg:col-span-3">
             <div className="glow-card p-8 md:p-12">
               <div className="relative z-10">
-                <h2 className="font-display text-2xl md:text-3xl uppercase mb-2 text-card-foreground">Send A Message</h2>
+                <h2 className="font-display text-2xl md:text-3xl mb-2 text-card-foreground">Send A Message</h2>
                 <p className="text-sm text-muted-foreground mb-8 font-body">Reach out directly to Marc Bahoury and the coaching team. We'll get back to you within 24 hours.</p>
 
                 {submitted ? (
@@ -104,14 +104,14 @@ const Contact = () => {
                     <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_hsl(var(--glow-primary))]">
                       <Send className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="font-display text-xl uppercase text-card-foreground mb-2">Message Sent Successfully!</h3>
+                    <h3 className="font-display text-xl text-card-foreground mb-2">Message Sent Successfully!</h3>
                     <p className="text-sm text-muted-foreground font-body">Thank you for contacting us. We will be in touch shortly.</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
-                        <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block font-body">Full Name</label>
+                        <label className="text-xs tracking-wider text-muted-foreground mb-2 block font-body">Full Name</label>
                         <input
                           type="text"
                           required
@@ -122,7 +122,7 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block font-body">Email Address</label>
+                        <label className="text-xs tracking-wider text-muted-foreground mb-2 block font-body">Email Address</label>
                         <input
                           type="email"
                           required
@@ -134,7 +134,7 @@ const Contact = () => {
                       </div>
                     </div>
                     <div>
-                      <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block font-body">Phone Number</label>
+                      <label className="text-xs tracking-wider text-muted-foreground mb-2 block font-body">Phone Number</label>
                       <input
                         type="tel"
                         value={formData.phone}
@@ -144,7 +144,7 @@ const Contact = () => {
                       />
                     </div>
                     <div>
-                      <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block font-body">Message / Fitness Goals</label>
+                      <label className="text-xs tracking-wider text-muted-foreground mb-2 block font-body">Message / Fitness Goals</label>
                       <textarea
                         required
                         rows={5}
@@ -177,7 +177,7 @@ const Contact = () => {
                       <item.icon className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-display text-sm uppercase mb-1 text-card-foreground">{item.title}</h3>
+                      <h3 className="font-display text-sm mb-1 text-card-foreground">{item.title}</h3>
                       <p className="text-sm text-muted-foreground font-body leading-relaxed">{item.value}</p>
                     </div>
                   </div>
@@ -210,7 +210,7 @@ const Contact = () => {
         <div className="section-padding w-full">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal>
-              <h2 className="display-lg mb-6 text-foreground">VISIT THE<br /><span className="text-gradient">IDEA® ARENA TODAY</span></h2>
+              <h2 className="display-lg mb-6 text-foreground">Visit The<br /><span className="text-gradient">Idea® Arena Today</span></h2>
               <p className="text-lg text-muted-foreground font-body">
                 Step inside Egypt's most dynamic indoor & outdoor workout space and see what makes the organically growing IDEA® Wellness family stand out.
               </p>

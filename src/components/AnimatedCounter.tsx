@@ -41,7 +41,7 @@ const AnimatedCounter = ({ end, suffix = "", prefix = "", label, duration = 2 }:
       <div className="display-lg text-gradient">
         {prefix}{count.toLocaleString()}{suffix}
       </div>
-      <p className="mt-2 text-sm uppercase tracking-widest text-muted-foreground font-body">{label}</p>
+      <p className="mt-2 text-sm tracking-wider text-muted-foreground font-body">{label}</p>
     </motion.div>
   );
 };

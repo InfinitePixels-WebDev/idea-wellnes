@@ -63,17 +63,19 @@ export const AnimatedThemeToggler = ({ className }: Props) => {
   };
 
   return (
-    <button
-      ref={buttonRef}
-      onClick={changeTheme}
-      aria-label="Toggle theme"
-      className={cn(
-        "relative inline-flex items-center justify-center w-9 h-9 rounded-full text-foreground/70 transition-colors duration-300 hover:text-primary",
-        className,
-      )}
-    >
-      {isDark ? <SunDim className="h-6 w-6" /> : <Moon className="h-5 w-5" />}
-    </button>
+    <div className={cn("flex flex-col items-center justify-center gap-0.5", className)}>
+      <button
+        ref={buttonRef}
+        onClick={changeTheme}
+        aria-label="Toggle theme"
+        className="relative inline-flex items-center justify-center w-9 h-9 rounded-full transition-colors duration-300 hover:text-primary text-current"
+      >
+        {isDark ? <SunDim className="h-6 w-6" /> : <Moon className="h-5 w-5" />}
+      </button>
+      <span className="text-[10px] tracking-wider font-semibold opacity-95 select-none">
+        {isDark ? "Dark" : "Light"}
+      </span>
+    </div>
   );
 };
 
