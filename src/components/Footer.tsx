@@ -142,9 +142,16 @@ const Footer = () => {
         <div className="h-px bg-gradient-to-r from-transparent via-secondary-foreground/15 to-transparent mb-6" />
 
         {/* Copyright */}
-        <p className="text-center text-xs text-secondary-foreground/25">
-          © {new Date().getFullYear()} IDEA® Wellness. All rights reserved.
-        </p>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-xs text-secondary-foreground/25">
+          <p>© {new Date().getFullYear()} IDEA® Wellness. All rights reserved.</p>
+          <span className="hidden md:inline">•</span>
+          <Link
+            to="/privacy"
+            className="hover:text-primary transition-colors duration-300"
+          >
+            Privacy &amp; Policy
+          </Link>
+        </div>
       </div>
 
       {/* Full-width watermark */}
