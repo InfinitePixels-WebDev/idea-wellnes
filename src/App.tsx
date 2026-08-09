@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +14,7 @@ import About from "./pages/About.tsx";
 import Trainers from "./pages/Trainers.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Contact from "./pages/Contact.tsx";
+import Privacy from "./pages/Privacy.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { Loader } from "@/components/Loader";
 import { PageTransition } from "@/components/PageTransition";
@@ -22,14 +23,12 @@ const queryClient = new QueryClient();
 
 const AppContent = () => {
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    // When the app initializes, redirect to the Home page
-    navigate("/");
-    
-    // Smooth loader timer for exactly 3 seconds
+    // Smooth loader timer for exactly 3 seconds.
+    // Note: we intentionally do NOT force-redirect to "/" here so that direct
+    // links and page refreshes stay on the requested route (e.g. /privacy).
     const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -67,6 +66,7 @@ const AppContent = () => {
               <Route path="/trainers" element={<PageTransition><Trainers /></PageTransition>} />
               <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
               <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+              <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
               <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
             </Routes>
           </AnimatePresence>
