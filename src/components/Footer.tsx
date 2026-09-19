@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import logo from "@/assets/idea-wellness-logo.png";
+import { classes } from "@/data/classes";
 
 const Footer = () => {
   const footerLinks = [
@@ -14,21 +15,18 @@ const Footer = () => {
       title: "Navigate",
       links: [
         { label: "Home", href: "/" },
-        { label: "About Us", href: "/about" },
-        { label: "Elite Classes", href: "/gallery" },
-        { label: "Photo Gallery", href: "/gallery" },
-        { label: "Contact Us", href: "/contact" },
+        { label: "About", href: "/about" },
+        { label: "Trainers", href: "/trainers" },
+        { label: "Gallery", href: "/gallery" },
+        { label: "Contact", href: "/contact" },
       ],
     },
     {
       title: "Core Offerings",
-      links: [
-        { label: "CrossFit & HIIT", href: "/gallery" },
-        { label: "Pilates & Core Training", href: "/gallery" },
-        { label: "Bodybuilding & Strength", href: "/gallery" },
-        { label: "Boxing & Kickboxing", href: "/gallery" },
-        { label: "Kids Fit & Ballet", href: "/gallery" },
-      ],
+      links: classes.map((classItem) => ({
+        label: classItem.name,
+        href: `/contact?class=${classItem.slug}`,
+      })),
     },
   ];
 

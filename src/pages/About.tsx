@@ -6,6 +6,7 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import ParallaxSection from "@/components/ParallaxSection";
 import TextReveal from "@/components/TextReveal";
 import TimelineDemo from "@/components/timeline-demo";
+import { classes } from "@/data/classes";
 
 const values = [
   { 
@@ -153,7 +154,7 @@ const About = () => {
             <ScrollReveal className="lg:col-span-5" delay={0.1}>
               <div className="relative overflow-hidden rounded-2xl aspect-[3/4] group">
                 <img 
-                  src="/converted_jpg/IMG_0641.jpg" 
+                  src="/content/trainers/coach-marc-bahoury-founder/Coach Marc Bahoury - IDEA wellness Founder.jpeg" 
                   alt="Marc T. Bahoury - Founder & Head Coach of IDEA® Wellness" 
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
@@ -216,21 +217,15 @@ const About = () => {
             <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Core Methodology</p>
             <h2 className="display-lg mb-16 text-foreground">Our Four Pillars Of<br /><span className="text-gradient">Member Success</span></h2>
           </ScrollReveal>
-          <motion.div ref={teamRef} style={{ x: teamX }} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { img: "/converted_jpg/IMG_0633.jpg", title: "Group Classes", desc: "CrossFit, Pilates, Boxing, Dance, and Zumba under professional guidance." },
-              { img: "/converted_jpg/IMG_0653.jpg", title: "Private Sessions", desc: "One-on-one tailored strength programs and intensive personal training." },
-              { img: "/converted_jpg/IMG_0640.jpg", title: "Kids Fitness", desc: "Engaging and structured fitness programs and ballet for kids & juniors." },
-              { img: "/converted_jpg/IMG_0659.jpg", title: "Nutrition Support", desc: "Meal planning, healthy recipes, and strategic food preparation tips." },
-            ].map((pillar, i) => (
-              <ScrollReveal key={pillar.title} delay={i * 0.1}>
+          <motion.div ref={teamRef} style={{ x: teamX }} className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
+            {classes.map((classItem, i) => (
+              <ScrollReveal key={classItem.slug} delay={i * 0.1}>
                 <div className="group relative">
                   <div className="relative overflow-hidden rounded-2xl aspect-[3/4]">
-                    <img src={pillar.img} alt={pillar.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-[1s] group-hover:scale-110" />
+                    <img src={classItem.image} alt={classItem.name} loading="lazy" className="w-full h-full object-cover transition-transform duration-[1s] group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-90" />
                     <div className="absolute bottom-4 left-4 right-4 z-10">
-                      <h3 className="font-display text-sm md:text-base text-foreground">{pillar.title}</h3>
-                      <p className="text-muted-foreground text-[10px] md:text-xs leading-relaxed font-body mt-1">{pillar.desc}</p>
+                      <h3 className="font-display text-sm md:text-base text-foreground">{classItem.name}</h3>
                     </div>
                   </div>
                 </div>

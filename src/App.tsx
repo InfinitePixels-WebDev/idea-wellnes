@@ -1,9 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import Navbar from "@/components/Navbar";
@@ -24,11 +24,22 @@ const queryClient = new QueryClient();
 const AppContent = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
+  const reloadCheckCompleted = useRef(false);
+
+  useEffect(() => {
+    if (reloadCheckCompleted.current) return;
+    reloadCheckCompleted.current = true;
+
+    const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+
+    if (navigation?.type === "reload") {
+      navigate("/", { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     // Smooth loader timer for exactly 3 seconds.
-    // Note: we intentionally do NOT force-redirect to "/" here so that direct
-    // links and page refreshes stay on the requested route (e.g. /privacy).
     const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);

@@ -6,6 +6,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ParallaxSection from "@/components/ParallaxSection";
 import TextReveal from "@/components/TextReveal";
+import { classes } from "@/data/classes";
 
 const testimonials = [
   { 
@@ -58,29 +59,6 @@ const testimonials = [
     text: "تمثال رمسيس المذكور في كتاب الله خلد ويقول للمغادر في ذوق ووجهه له وداعا عد تاثيتا في القريب العاجل لقد شربت من نهر الجنة وسوف تعود ثانيتا لارض نهر الجنة وعلى فكره يا خواجه ده مش الاصلي ده تحفة هاي كوبي من الاصلي نحته فنان مصري حديث عشان بس تصدقوا ان احنا الفراعنة جينات يا عصومه", 
     rating: 5 
   }
-];
-
-const facilities = [
-  { 
-    title: "CrossFit & HIIT", 
-    desc: "Sheraton Heliopolis & New Cairo premier indoor/outdoor rigs.", 
-    img: "/converted_jpg/IMG_0632.jpg" 
-  },
-  { 
-    title: "Pilates & Core Training", 
-    desc: "Personalized core detailing and bodyweight gymnastics alignment.", 
-    img: "/converted_jpg/IMG_0635.jpg" 
-  },
-  { 
-    title: "Boxing & Kickboxing", 
-    desc: "High-energy training sessions to build peak aerobic conditioning.", 
-    img: "/converted_jpg/IMG_0643.jpg" 
-  },
-  { 
-    title: "Nutrition & Lifestyle", 
-    desc: "Customized meal plans, calorie recipes, and food preparation tips.", 
-    img: "/converted_jpg/IMG_0653.jpg" 
-  },
 ];
 
 const Index = () => {
@@ -235,17 +213,25 @@ const Index = () => {
             <h2 className="display-lg mb-16 text-foreground">Premium Classes &<br /><span className="text-gradient">Lifestyle Support</span></h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-            {facilities.map((f, i) => {
+            {classes.map((classItem, i) => {
               const spans = ["md:col-span-7", "md:col-span-5", "md:col-span-5", "md:col-span-7"];
               const heights = ["h-72 md:h-96", "h-72 md:h-96", "h-72 md:h-80", "h-72 md:h-80"];
               return (
-                <ScrollReveal key={f.title} delay={i * 0.1} className={spans[i]}>
+                <ScrollReveal key={classItem.slug} delay={i * 0.1} className={spans[i]}>
                   <div className={`relative overflow-hidden rounded-2xl group cursor-pointer ${heights[i]}`}>
                     <motion.img
-                      src={f.img}
-                      alt={f.title}
+                      src={classItem.image}
+                      alt={classItem.name}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
+                      style={{
+                        objectPosition:
+                          classItem.slug === "calisthenics"
+                            ? "65% 12%"
+                            : classItem.slug === "ladies-specific-training"
+                              ? "50% 72%"
+                              : "center",
+                      }}
                       whileHover={{ scale: 1.05 }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
@@ -253,7 +239,7 @@ const Index = () => {
                       <motion.div
                         className="transform transition-transform duration-500"
                       >
-                        <h3 className="font-display text-xl md:text-2xl text-foreground mb-1">{f.title}</h3>
+                        <h3 className="font-display text-xl md:text-2xl text-foreground mb-1">{classItem.name}</h3>
                       </motion.div>
                     </div>
                   </div>
@@ -261,54 +247,6 @@ const Index = () => {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* Program pillars on home page leadership placeholder */}
-      <section className="section-padding bg-card">
-        <div className="max-w-7xl mx-auto">
-          <ScrollReveal>
-            <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-4 font-body">Coaching Leadership</p>
-            <h2 className="display-lg mb-16 text-foreground">Meet Head Coach &<br /><span className="text-gradient">The IDEA® System</span></h2>
-          </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { img: "/converted_jpg/IMG_0641.jpg", name: "Marc Bahoury", role: "Founder & Head Coach (CrossFit L1/L2, ISSA)" },
-              { img: "/converted_jpg/IMG_0659.jpg", name: "18+ Expert Coaches", role: "Passionate & Highly Educated Trainers" },
-              { img: "/converted_jpg/IMG_0633.jpg", name: "Tailored Classes", desc: "Max 30 Trainees per class for full guidance", role: "Indoor & Outdoor Group Training" },
-            ].map((item, i) => (
-              <ScrollReveal key={item.name} delay={i * 0.15}>
-                <div className="group relative">
-                  <div className="relative overflow-hidden rounded-2xl aspect-[3/4]">
-                    <img
-                      src={item.img}
-                      alt={item.name}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-[1s] group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-85" />
-                    
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-6 z-10 font-body">
-                      <p className="text-primary text-xs font-semibold tracking-[0.1em] mb-1 font-body">{item.role}</p>
-                      <h3 className="font-display text-xl md:text-2xl text-foreground">{item.name}</h3>
-                    </div>
-                  </div>
-                  {/* Floating number */}
-                  <span className="absolute -top-3 -right-3 font-display text-6xl text-primary/10 group-hover:text-primary/20 transition-colors duration-500 select-none">
-                    0{i + 1}
-                  </span>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-          <ScrollReveal className="text-center mt-12">
-            <Link to="/about" className="btn-outline text-sm group">
-              Read Our Full Story <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </Link>
-          </ScrollReveal>
         </div>
       </section>
 

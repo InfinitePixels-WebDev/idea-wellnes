@@ -1,9 +1,16 @@
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { useState, useRef, useMemo } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useRef, useMemo, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import ScrollReveal from "@/components/ScrollReveal";
-import ParallaxSection from "@/components/ParallaxSection";
 import TextReveal from "@/components/TextReveal";
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+  category: string;
+  branch: string;
+  facility?: string;
+}
 
 const images = [
   { src: "/converted_jpg/IMG_3920.jpg", alt: "Idea Wellness Premium Indoor & Outdoor Gym Venue", category: "Facility", branch: "Heliopolis Branch" },
@@ -25,49 +32,135 @@ const images = [
   { src: "/converted_jpg/IMG_0646.jpg", alt: "CrossFit Box Jumps and Strength Conditioning Program", category: "Training", branch: "New Cairo Branch" },
   { src: "/converted_jpg/IMG_0647.jpg", alt: "Passionate Community of 600+ Organically Growing Members", category: "Facility", branch: "Ramla North Coast" },
   { src: "/converted_jpg/IMG_0648.jpg", alt: "Personalized Bodybuilding & Body Detailing Coach Heliopolis", category: "Training", branch: "Heliopolis Branch" },
-  { src: "/converted_jpg/IMG_0649.jpg", alt: "Sleek Indoor Turf Track for Sled Pushes and Agility Drills", category: "Facility", branch: "New Cairo Branch" },
   { src: "/converted_jpg/IMG_0650.jpg", alt: "High-Intensity Interval Training HIIT for Rapid Weight Loss", category: "Performance", branch: "Ramla North Coast" },
   { src: "/converted_jpg/IMG_0651.jpg", alt: "Modern Cardio Station with Treadmills and Assault Bikes", category: "Facility", branch: "Heliopolis Branch" },
   { src: "/converted_jpg/IMG_0652.jpg", alt: "Flexibility and Dynamic Mobility Training Heliopolis", category: "Training", branch: "New Cairo Branch" },
   { src: "/converted_jpg/IMG_0653.jpg", alt: "Private Training and Nutritional Counseling Cairo", category: "Performance", branch: "Ramla North Coast" },
   { src: "/converted_jpg/IMG_0654.jpg", alt: "Calisthenics, Pull-up Bars and Gymnastics Training Setup", category: "Training", branch: "Heliopolis Branch" },
   { src: "/converted_jpg/IMG_0655.jpg", alt: "Pilates Reformers & Core Strengthening Station", category: "Facility", branch: "New Cairo Branch" },
-  { src: "/converted_jpg/IMG_0656.jpg", alt: "Premium CrossFit and Olympic Lifter Olympic Barbells", category: "Training", branch: "Ramla North Coast" },
   { src: "/converted_jpg/IMG_0657.jpg", alt: "Relaxing Yoga, Zumba, and Dance Studio Heliopolis", category: "Facility", branch: "Heliopolis Branch" },
-  { src: "/converted_jpg/IMG_0658.jpg", alt: "North Coast Beach Fitness Competition Ramla North Coast", category: "Training", branch: "Ramla North Coast" },
-  { src: "/converted_jpg/IMG_0659.jpg", alt: "Expert Certified Personal Trainers in Cairo & New Cairo", category: "Performance", branch: "New Cairo Branch" },
   { src: "/converted_jpg/IMG_0660.jpg", alt: "Comprehensive Bodyweight and HIIT Group Workout", category: "Training", branch: "Heliopolis Branch" },
   { src: "/converted_jpg/IMG_0661.jpg", alt: "Friendly, Supportive, and Highly Motivating Gym Family", category: "Facility", branch: "New Cairo Branch" }
 ];
 
+const outdoorImageSources = new Set([
+  "/converted_jpg/IMG_0645.jpg",
+  "/converted_jpg/IMG_0646.jpg",
+  "/converted_jpg/IMG_0647.jpg",
+  "/converted_jpg/IMG_0648.jpg",
+  "/converted_jpg/IMG_0649.jpg",
+  "/converted_jpg/IMG_0650.jpg",
+  "/converted_jpg/IMG_0651.jpg",
+  "/converted_jpg/IMG_0652.jpg",
+  "/converted_jpg/IMG_0653.jpg",
+  "/converted_jpg/IMG_0654.jpg",
+  "/converted_jpg/IMG_0655.jpg",
+  "/converted_jpg/IMG_0656.jpg",
+  "/converted_jpg/IMG_0657.jpg",
+  "/converted_jpg/IMG_0658.jpg",
+  "/converted_jpg/IMG_0659.jpg",
+  "/converted_jpg/IMG_0660.jpg",
+  "/converted_jpg/IMG_0661.jpg",
+]);
+
+const heliopolisImages = images.map((image) => ({
+  ...image,
+  branch: "Heliopolis Branch",
+  facility: outdoorImageSources.has(image.src) ? "Outdoor training facility" : "Gym",
+}));
+
+const newCairoImages = [
+  "B1.jpeg",
+  "B2.jpeg",
+  "B3.jpeg",
+  "B4.jpeg",
+  "B5.jpeg",
+  "B6.jpeg",
+].map((fileName) => ({
+  src: `${import.meta.env.BASE_URL}content/branches/NewCairo/${fileName}`,
+  alt: `New Cairo branch ${fileName.replace(".jpeg", "")}`,
+  category: "Facility",
+  branch: "New Cairo Branch",
+  facility: fileName === "B3.jpeg" ? "Outdoor training facility" : "Gym",
+}));
+
+const gounaImages = ["G1.jpeg", "G2.jpeg", "G3.jpeg", "G4.jpeg"].map((fileName) => ({
+  src: `${import.meta.env.BASE_URL}content/branches/Gouna/${fileName}`,
+  alt: `El Gouna branch ${fileName.replace(".jpeg", "")}`,
+  category: "Facility",
+  branch: "El Gouna",
+}));
+
+const sahelImages = ["S1.jpeg", "S2.jpeg", "S3.jpeg", "S4.jpeg", "S5.jpeg", "S6.jpeg", "S7.jpeg"].map((fileName) => ({
+  src: `${import.meta.env.BASE_URL}content/branches/Sahel/${fileName}`,
+  alt: `Sahel branch ${fileName.replace(".jpeg", "")}`,
+  category: "Facility",
+  branch: "Sahel",
+}));
+
+const tajSultanImages = [{
+  src: `${import.meta.env.BASE_URL}content/branches/Taj-Sultan/taj-sultan.jpeg`,
+  alt: "Taj Sultan branch",
+  category: "Facility",
+  branch: "Taj Sultan",
+}];
+
+const galleryImages: GalleryImage[] = [
+  ...heliopolisImages,
+  ...newCairoImages,
+  ...gounaImages,
+  ...sahelImages,
+  ...tajSultanImages,
+];
+
+const branches = ["Heliopolis Branch", "New Cairo Branch", "Taj Sultan", "El Gouna", "Sahel"];
+const facilityTabs = ["Gym", "Outdoor training facility"];
+
 const Gallery = () => {
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const [activeBranch, setActiveBranch] = useState<string>("All Branches");
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeBranch, setActiveBranch] = useState<string>("Heliopolis Branch");
+  const [activeFacility, setActiveFacility] = useState<string>("Gym");
   const [visibleCount, setVisibleCount] = useState(12);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  const categories = useMemo(() => {
-    return ["All", "Training", "Facility", "Performance"];
-  }, []);
-
   const filteredImages = useMemo(() => {
-    return images.filter(img => {
-      const matchBranch = activeBranch === "All Branches" || img.branch === activeBranch;
-      const matchCategory = activeCategory === "All" || img.category === activeCategory;
-      return matchBranch && matchCategory;
+    return galleryImages.filter(img => {
+      const matchBranch = img.branch === activeBranch;
+      const hasFacilityTabs = activeBranch === "Heliopolis Branch" || activeBranch === "New Cairo Branch";
+      const matchFacility = !hasFacilityTabs
+        || img.facility === activeFacility
+        || (activeBranch === "New Cairo Branch" && !img.facility);
+      return matchBranch && matchFacility;
     });
-  }, [activeBranch, activeCategory]);
+  }, [activeBranch, activeFacility]);
 
   const navigateLightbox = (dir: number) => {
     if (lightbox === null) return;
     setLightbox((lightbox + dir + filteredImages.length) % filteredImages.length);
   };
 
-  const heights = ["h-72", "h-96", "h-64", "h-80", "h-72", "h-96", "h-64", "h-80"];
+  useEffect(() => {
+    if (lightbox === null) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLightbox(null);
+      if (event.key === "ArrowLeft") navigateLightbox(-1);
+      if (event.key === "ArrowRight") navigateLightbox(1);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [lightbox, filteredImages]);
 
   return (
     <div className="overflow-hidden">
@@ -123,11 +216,12 @@ const Gallery = () => {
         <div className="max-w-7xl mx-auto flex flex-col items-center gap-4">
           {/* Branch row */}
           <div className="flex flex-wrap justify-center items-center gap-3">
-            {["All Branches", "Heliopolis Branch", "New Cairo Branch", "Ramla North Coast"].map((branch) => (
+            {branches.map((branch) => (
               <button
                 key={branch}
                 onClick={() => {
                   setActiveBranch(branch);
+                  setActiveFacility("Gym");
                   setLightbox(null);
                   setVisibleCount(12);
                 }}
@@ -142,65 +236,77 @@ const Gallery = () => {
             ))}
           </div>
 
-          {/* Category row */}
-          <div className="flex flex-wrap justify-center items-center gap-3">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  setActiveCategory(cat);
-                  setLightbox(null);
-                  setVisibleCount(12);
-                }}
-                className={`px-5 py-2 rounded-full text-xs tracking-wider font-semibold font-body transition-all duration-300 ${
-                  activeCategory === cat
-                    ? "bg-foreground text-background shadow-md"
-                    : "bg-card/50 text-muted-foreground hover:text-foreground hover:bg-muted border border-border/40"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          {/* Facility row */}
+          {(activeBranch === "Heliopolis Branch" || activeBranch === "New Cairo Branch") && (
+            <div className="flex flex-wrap justify-center items-center gap-3">
+              {facilityTabs.map((facility) => (
+                <button
+                  key={facility}
+                  onClick={() => {
+                    setActiveFacility(facility);
+                    setLightbox(null);
+                    setVisibleCount(12);
+                  }}
+                  className={`px-5 py-2 rounded-full text-xs tracking-wider font-semibold font-body transition-all duration-300 ${
+                    activeFacility === facility
+                      ? "bg-foreground text-background shadow-md"
+                      : "bg-card/50 text-muted-foreground hover:text-foreground hover:bg-muted border border-border/40"
+                  }`}
+                >
+                  {facility}
+                </button>
+              ))}
+            </div>
+          )}
+
         </div>
       </section>
 
       {/* Parallax divider */}
-      <ParallaxSection imgSrc="/converted_jpg/IMG_0639.jpg" imgAlt="IDEA® Wellness Indoor and Outdoor Fitness Hub" className="h-[25vh] md:h-[35vh]" speed={0.4} overlay={false}>
-        <div className="absolute inset-0 bg-background/20" />
-      </ParallaxSection>
-
       {/* Masonry Grid */}
       <section className="section-padding pt-16">
         <div className="max-w-7xl mx-auto">
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-            <AnimatePresence mode="popLayout">
-              {filteredImages.slice(0, visibleCount).map((img, i) => {
-                return (
-                  <ScrollReveal key={img.src} delay={(i % 6) * 0.05}>
-                    <motion.div
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.4 }}
-                      whileHover={{ y: -6 }}
-                      className={`relative overflow-hidden rounded-2xl group cursor-pointer break-inside-avoid ${heights[i % heights.length]}`}
-                      onClick={() => setLightbox(i)}
-                    >
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
-                      />
-                    </motion.div>
-                  </ScrollReveal>
-                );
-              })}
-            </AnimatePresence>
-          </div>
+          {filteredImages.length > 0 ? (
+            <motion.div
+              key={`${activeBranch}-${activeFacility}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {filteredImages.slice(0, visibleCount).map((img, i) => (
+                <button
+                  type="button"
+                  key={img.src}
+                  aria-label={`Open ${img.alt}`}
+                  className="group relative aspect-[4/3] min-w-0 cursor-pointer overflow-hidden rounded-2xl p-0 text-left transition-transform duration-300 hover:-translate-y-1"
+                  onClick={() => setLightbox(i)}
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="eager"
+                    decoding="async"
+                    className="block w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {activeBranch === "Taj Sultan" && (
+                    <div className="absolute inset-x-0 bottom-0 bg-background/80 px-5 py-4 text-center backdrop-blur-sm">
+                      <p className="text-primary text-xs font-semibold tracking-[0.2em] font-body">Taj Sultan</p>
+                      <p className="mt-1 font-display text-xl text-foreground">Coming Soon</p>
+                    </div>
+                  )}
+                </button>
+              ))}
+            </motion.div>
+          ) : (
+            <div className="min-h-64 flex flex-col items-center justify-center text-center border border-border/40 rounded-2xl bg-card/30 px-6">
+              <p className="text-primary text-sm tracking-[0.2em] font-semibold mb-3 font-body">{activeBranch}</p>
+              <h2 className="font-display text-3xl text-foreground">Coming Soon</h2>
+              <p className="mt-3 max-w-md text-muted-foreground font-body">
+                Photos for this location will be added when the branch is ready.
+              </p>
+            </div>
+          )}
 
           {visibleCount < filteredImages.length && (
             <div className="flex justify-center mt-12">
@@ -215,52 +321,49 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightbox !== null && filteredImages[lightbox] && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-2xl flex items-center justify-center p-6"
+      {lightbox !== null && filteredImages[lightbox] && createPortal(
+        <div
+          className="fixed inset-0 z-[200] flex h-[100dvh] w-full items-center justify-center overflow-hidden bg-background/95 p-6"
+          style={{ overscrollBehavior: "none" }}
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            type="button"
+            aria-label="Close image viewer"
             onClick={() => setLightbox(null)}
+            className="absolute right-6 top-6 z-[203] rounded-full border border-border p-3 hover:border-primary hover:text-primary"
           >
-            <button
-              onClick={() => setLightbox(null)}
-              className="absolute top-6 right-6 p-3 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300 z-10"
-            >
-              <X className="h-6 w-6 text-foreground" />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); navigateLightbox(-1); }}
-              className="absolute left-4 md:left-8 p-3 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300 z-10"
-            >
-              <ChevronLeft className="h-6 w-6 text-foreground" />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); navigateLightbox(1); }}
-              className="absolute right-4 md:right-8 p-3 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300 z-10"
-            >
-              <ChevronRight className="h-6 w-6 text-foreground" />
-            </button>
-            <motion.div
-              key={lightbox}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="relative max-w-full max-h-[85vh] flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={filteredImages[lightbox].src}
-                alt={filteredImages[lightbox].alt}
-                className="max-w-[90vw] max-h-[80vh] w-auto h-auto object-contain rounded-lg shadow-2xl border border-border/20 relative z-10"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <X className="h-6 w-6 text-foreground" />
+          </button>
+          <button
+            type="button"
+            aria-label="Previous image"
+            onClick={(event) => { event.stopPropagation(); navigateLightbox(-1); }}
+            className="absolute left-4 top-1/2 z-[203] -translate-y-1/2 rounded-full border border-border p-3 hover:border-primary hover:text-primary md:left-8"
+          >
+            <ChevronLeft className="h-6 w-6 text-foreground" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next image"
+            onClick={(event) => { event.stopPropagation(); navigateLightbox(1); }}
+            className="absolute right-4 top-1/2 z-[203] -translate-y-1/2 rounded-full border border-border p-3 hover:border-primary hover:text-primary md:right-8"
+          >
+            <ChevronRight className="h-6 w-6 text-foreground" />
+          </button>
+          <div
+            className="flex h-full w-full items-center justify-center"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <img
+              src={filteredImages[lightbox].src}
+              alt={filteredImages[lightbox].alt}
+              className="max-h-[calc(100dvh-3rem)] max-w-[calc(100vw-3rem)] object-contain rounded-lg border border-border/20 shadow-2xl"
+            />
+          </div>
+        </div>,
+        document.body,
+      )}
     </div>
   );
 };
