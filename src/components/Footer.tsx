@@ -6,7 +6,7 @@ import {
   Instagram,
   ArrowUpRight,
 } from "lucide-react";
-import logo from "@/assets/idea-wellness-logo.png";
+import logo from "@/assets/idea-wellness-logo.svg";
 import { classes } from "@/data/classes";
 
 const Footer = () => {

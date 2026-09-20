@@ -77,7 +77,7 @@ const newCairoImages = [
   "B5.jpeg",
   "B6.jpeg",
 ].map((fileName) => ({
-  src: `${import.meta.env.BASE_URL}content/branches/NewCairo/${fileName}`,
+  src: `${import.meta.env.BASE_URL}content/Branches/NewCairo/${fileName}`,
   alt: `New Cairo branch ${fileName.replace(".jpeg", "")}`,
   category: "Facility",
   branch: "New Cairo Branch",
@@ -85,21 +85,21 @@ const newCairoImages = [
 }));
 
 const gounaImages = ["G1.jpeg", "G2.jpeg", "G3.jpeg", "G4.jpeg"].map((fileName) => ({
-  src: `${import.meta.env.BASE_URL}content/branches/Gouna/${fileName}`,
+  src: `${import.meta.env.BASE_URL}content/Branches/Gouna/${fileName}`,
   alt: `El Gouna branch ${fileName.replace(".jpeg", "")}`,
   category: "Facility",
   branch: "El Gouna",
 }));
 
 const sahelImages = ["S1.jpeg", "S2.jpeg", "S3.jpeg", "S4.jpeg", "S5.jpeg", "S6.jpeg", "S7.jpeg"].map((fileName) => ({
-  src: `${import.meta.env.BASE_URL}content/branches/Sahel/${fileName}`,
+  src: `${import.meta.env.BASE_URL}content/Branches/Sahel/${fileName}`,
   alt: `Sahel branch ${fileName.replace(".jpeg", "")}`,
   category: "Facility",
   branch: "Sahel",
 }));
 
 const tajSultanImages = [{
-  src: `${import.meta.env.BASE_URL}content/branches/Taj-Sultan/taj-sultan.jpeg`,
+  src: `${import.meta.env.BASE_URL}content/Branches/Taj-Sultan/taj-sultan.jpeg`,
   alt: "Taj Sultan branch",
   category: "Facility",
   branch: "Taj Sultan",

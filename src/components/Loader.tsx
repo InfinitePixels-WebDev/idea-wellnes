@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import logo from "@/assets/idea-wellness-logo.png";
+import logo from "@/assets/idea-wellness-logo.svg";
 
 const loadingTexts = [
   "Igniting Discipline",

@@ -152,13 +152,14 @@ const Index = () => {
           transition={{
             repeat: Infinity,
             ease: "linear",
-            duration: 20,
+            duration: 18,
           }}
-          className="flex whitespace-nowrap gap-8"
+          className="flex w-max whitespace-nowrap gap-8"
         >
-          {Array.from({ length: 8 }).map((_, i) => (
-            <span key={i} className="font-display text-2xl md:text-4xl text-primary-foreground/90 flex items-center gap-8">
-              CrossFit <span className="text-primary-foreground/40">✦</span> Pilates <span className="text-primary-foreground/40">✦</span> Bodybuilding <span className="text-primary-foreground/40">✦</span> Nutrition <span className="text-primary-foreground/40">✦</span> Kids Fit <span className="text-primary-foreground/40">✦</span> Community
+          {[...classes, ...classes].map((classItem, i) => (
+            <span key={`${classItem.slug}-${i}`} className="flex items-center gap-8 font-display text-2xl text-primary-foreground/90 md:text-4xl">
+              {classItem.name}
+              <span className="text-primary-foreground/40">✦</span>
             </span>
           ))}
         </motion.div>

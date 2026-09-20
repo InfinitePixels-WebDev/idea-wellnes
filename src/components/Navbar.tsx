@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedThemeToggler as ThemeToggle } from "./ui/animated-theme-toggler";
-import logo from "@/assets/idea-wellness-logo.png";
+import logo from "@/assets/idea-wellness-logo.svg";
 
 const navLinks = [
   { to: "/", label: "Home" },
