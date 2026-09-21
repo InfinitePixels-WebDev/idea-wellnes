@@ -49,7 +49,7 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Idea Wellness"
-              className={`h-8 md:h-9 w-auto shrink-0 object-contain transition-opacity duration-300 group-hover:opacity-70 ${
+              className={`h-10 md:h-12 w-auto shrink-0 object-contain transition-opacity duration-300 group-hover:opacity-70 ${
                 topNav ? "invert" : "dark:invert"
               }`}
             />

@@ -65,7 +65,7 @@ const Footer = () => {
               <img
                 src={logo}
                 alt="Idea Wellness Logo"
-                className="h-8 w-auto invert shrink-0 object-contain"
+                className="h-10 md:h-11 w-auto invert shrink-0 object-contain"
               />
             </Link>
             <p className="text-secondary-foreground/40 text-sm leading-relaxed font-body">
