@@ -146,23 +146,25 @@ const Index = () => {
       </section>
 
       {/* Marquee text band */}
-      <div className="py-8 md:py-12 bg-primary overflow-hidden">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 18,
-          }}
-          className="flex w-max whitespace-nowrap gap-8"
-        >
-          {[...classes, ...classes].map((classItem, i) => (
-            <span key={`${classItem.slug}-${i}`} className="flex items-center gap-8 font-display text-2xl text-primary-foreground/90 md:text-4xl">
-              {classItem.name}
-              <span className="text-primary-foreground/40">✦</span>
-            </span>
-          ))}
-        </motion.div>
+      <div className="py-8 md:py-12 bg-primary overflow-hidden select-none">
+        <div className="flex w-max">
+          <div className="flex shrink-0 items-center gap-8 pr-8 animate-marquee">
+            {[...classes, ...classes, ...classes, ...classes].map((classItem, i) => (
+              <span key={`track1-${classItem.slug}-${i}`} className="flex items-center gap-8 font-display text-2xl text-primary-foreground/90 md:text-4xl">
+                {classItem.name}
+                <span className="text-primary-foreground/40">✦</span>
+              </span>
+            ))}
+          </div>
+          <div className="flex shrink-0 items-center gap-8 pr-8 animate-marquee" aria-hidden="true">
+            {[...classes, ...classes, ...classes, ...classes].map((classItem, i) => (
+              <span key={`track2-${classItem.slug}-${i}`} className="flex items-center gap-8 font-display text-2xl text-primary-foreground/90 md:text-4xl">
+                {classItem.name}
+                <span className="text-primary-foreground/40">✦</span>
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Stats — floating cards */}

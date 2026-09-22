@@ -96,6 +96,10 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(25 100% 50% / 0.2)" },
           "50%": { boxShadow: "0 0 40px hsl(25 100% 50% / 0.4)" },
         },
+        "marquee": {
+          "0%": { transform: "translate3d(0, 0, 0)" },
+          "100%": { transform: "translate3d(-100%, 0, 0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -105,6 +109,7 @@ export default {
         "scale-in": "scale-in 0.4s ease-out forwards",
         "counter": "counter 0.5s ease-out forwards",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "marquee": "marquee 30s linear infinite",
       },
     },
   },
